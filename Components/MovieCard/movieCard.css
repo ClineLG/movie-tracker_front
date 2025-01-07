@@ -1,0 +1,13 @@
+.movies-container {
+  display: flex;
+  gap: 10px;
+  overflow: scroll;
+}
+.MovieCard {
+  height: 100%;
+  /* display: flex;
+    flex-direction: column; */
+}
+.MovieCard img {
+  height: 200px;
+}
