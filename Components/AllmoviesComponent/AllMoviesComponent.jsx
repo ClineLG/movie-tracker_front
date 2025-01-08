@@ -7,8 +7,7 @@ const AllMoviesComponent = ({ data }) => {
       {data.results.map((movie) => {
         return (
           <Link
-            to="/details"
-            state={{ from: movie.id }}
+            to={`/details/${movie.id}`}
             className="MovieCard"
             key={movie.id}
           >

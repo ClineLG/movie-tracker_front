@@ -1,23 +1,20 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./allMovies.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AllMoviesComponent from "../../Components/AllmoviesComponent/AllMoviesComponent";
 
 const Allmovies = () => {
-  const location = useLocation();
-  const { from } = location.state;
+  const { cat } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [page, setPage] = useState(1);
-
-  console.log(from);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/movies/${from}/?page=${page}`
+          `http://localhost:3000/movies/${cat}/?page=${page}`
         );
         console.log(response.data);
         setData(response.data);
@@ -36,9 +33,9 @@ const Allmovies = () => {
       <div>
         <h1>
           Les films{" "}
-          {from === "pop"
+          {cat === "pop"
             ? "Populaires"
-            : from === "upComing"
+            : cat === "upComing"
             ? "Bientôt en Salle"
             : "A l'affiche"}
         </h1>

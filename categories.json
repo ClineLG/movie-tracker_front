@@ -1,5 +1,6 @@
 {
   "genres": [
+    { "id": 0, "name": "Toutes les catégories" },
     {
       "id": 28,
       "name": "Action"

@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import MovieDetailsCard from "../../Components/MovieDeatailsCard/MovieDetailsCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -7,24 +7,19 @@ import movie from "../../exempleMovie.json";
 const MovieDetails = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const location = useLocation();
-  const { from } = location.state;
-  //   console.log(from);
+  const { id } = useParams();
+  console.log("ID>>>>>>>", id);
   useEffect(() => {
     const fetchData = async () => {
-      setData(movie);
-      setIsLoading(false);
-      //   try {
-      //     const response = await axios.get(
-      //       `http://localhost:3000/movies/${from}`
-      //     );
+      try {
+        const response = await axios.get(`http://localhost:3000/movies/${id}`);
 
-      //     console.log(response.data);
-      //     setData(response.data);
-      //     setIsLoading(false);
-      //   } catch (error) {
-      //     console.log(error);
-      //   }
+        console.log(response.data);
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchData();
   }, []);
@@ -34,7 +29,7 @@ const MovieDetails = () => {
   ) : (
     <section>
       <div className="container">
-        {console.log(data)}
+        {console.log("Data", data)}
         <MovieDetailsCard data={data} />
       </div>
     </section>

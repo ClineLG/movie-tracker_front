@@ -3,24 +3,24 @@ const MovieDetailsCard = ({ data }) => {
   const {
     budget,
     genres,
-    origin_title,
+    original_title,
     overview,
     poster_path,
     production_companies,
-
+    title,
     release_date,
+    tagline,
     revenue,
     runtime,
   } = data;
   console.log(production_companies);
   return (
     <div>
-      <h1>{data.belongs_to_collection.name}</h1>
-      <p>{origin_title}</p>
-      <img
-        src={"https://image.tmdb.org/t/p/w500" + poster_path}
-        alt={data.belongs_to_collection.name}
-      />
+      <h1> {title}</h1>
+
+      {original_title !== title && <p>{original_title}</p>}
+      {tagline && <p>{tagline}</p>}
+      <img src={"https://image.tmdb.org/t/p/w500" + poster_path} alt={title} />
       <div>
         {genres.map((genre) => {
           return <p key={genre.id}>{genre.name}</p>;
@@ -46,7 +46,7 @@ const MovieDetailsCard = ({ data }) => {
       <p>durée : {runtime}min</p>
       <div>
         <p>budget pour le film : {budget} ＄</p>
-        <p>recette du film : {revenue} ＄</p>
+        {revenue !== 0 && <p>recette du film : {revenue} ＄</p>}
       </div>
     </div>
   );
