@@ -1,14 +1,15 @@
 import { useParams } from "react-router-dom";
 import MovieDetailsCard from "../../Components/MovieDeatailsCard/MovieDetailsCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "./movieDetails.css";
-import movie from "../../exempleMovie.json";
-const MovieDetails = () => {
+import UserContext from "../../Context/UserContext";
+const MovieDetails = ({ setModalAddVisible, setModalConnectionVisible }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
   const { id } = useParams();
-  console.log("ID>>>>>>>", id);
+  const { user } = useContext(UserContext);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,7 +30,13 @@ const MovieDetails = () => {
   ) : (
     <section>
       <div className="container">
-        {console.log("Data", data)}
+        <button
+          onClick={() => {
+            user ? setModalAddVisible(true) : setModalConnectionVisible(true);
+          }}
+        >
+          se mettre ca de coté
+        </button>
         <MovieDetailsCard data={data} />
       </div>
     </section>

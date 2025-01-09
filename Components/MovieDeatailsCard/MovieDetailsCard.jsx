@@ -1,5 +1,9 @@
 import "./movieDetailsCard.css";
+import UserContext from "../../Context/UserContext";
+import { useContext, useEffect } from "react";
 const MovieDetailsCard = ({ data }) => {
+  const { setDataMovie } = useContext(UserContext);
+
   const {
     budget,
     genres,
@@ -13,7 +17,24 @@ const MovieDetailsCard = ({ data }) => {
     revenue,
     runtime,
   } = data;
-  console.log(production_companies);
+
+  useEffect(() => {
+    const obj = {
+      budget: budget,
+      genres: genres,
+      original_title: original_title,
+      overview: overview,
+      poster: "https://image.tmdb.org/t/p/w500" + poster_path,
+      production_companies: production_companies,
+      title: title,
+      release_date: release_date,
+      revenue: revenue,
+      tagline: tagline,
+      runtime: runtime,
+    };
+    setDataMovie(obj);
+  }, []);
+
   return (
     <div>
       <h1> {title}</h1>
@@ -26,7 +47,7 @@ const MovieDetailsCard = ({ data }) => {
           return <p key={genre.id}>{genre.name}</p>;
         })}
       </div>
-      <p>réalisé le {release_date}</p>
+      <p>Sortie le {release_date}</p>
       <div>
         <p>Produit par</p>
         {production_companies.map((prod) => {

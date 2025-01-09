@@ -5,7 +5,7 @@ import { useState, useContext } from "react";
 import userContext from "../../Context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ pageFunc }) => {
   const { user } = useContext(userContext);
   console.log("user", user);
   const navigate = useNavigate();
@@ -13,9 +13,41 @@ const Header = () => {
     cat: 0,
     search: "",
   });
+  console.log(query);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // console.log(query.cat);
+    if (!query.cat && !query.search) {
+      null;
+    } else if (!query.cat) {
+      pageFunc(1);
+      navigate("all/search", { state: { from: query.search } });
 
-  const handleSubmit = () => {
-    console.log("submit");
+      const obj = {
+        cat: 0,
+        search: "",
+      };
+      setQuery(obj);
+    } else if (query.cat && query.search) {
+      pageFunc(1);
+      navigate(`all/${query.cat}`, { state: { from: query.search } });
+
+      const obj = {
+        cat: 0,
+        search: "",
+      };
+      setQuery(obj);
+    } else if (query.cat && !query.search) {
+      pageFunc(1);
+
+      navigate(`all/${query.cat}`);
+
+      const obj = {
+        cat: 0,
+        search: "",
+      };
+      setQuery(obj);
+    }
   };
 
   return (
@@ -25,10 +57,14 @@ const Header = () => {
           <MdLocalMovies />
           <p>Movie-Tracker</p>
         </Link>
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={(event) => {
+            handleSubmit(event);
+          }}
+        >
           <select
             name="categories"
-            defaultValue={query.cat}
+            value={query.cat}
             onChange={(event) => {
               const obj = { ...query, cat: event.target.value };
               setQuery(obj);
