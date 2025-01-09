@@ -9,8 +9,11 @@ import MovieDetails from "../Pages/MovieDetails/MovieDetails";
 import Allmovies from "../Pages/AllMovies/AllMovies";
 import Signup from "../Pages/Signup/Sigup";
 import Login from "../Pages/Login/login";
+import Collections from "../Pages/Collections/Collections";
 //components
 import Header from "../Components/Header/Header";
+import ModalConnection from "../Components/modalConnection/modalConnection";
+import ModalAddMovie from "../Components/modalAddMovie/ModalAddMovie";
 //context
 import UserContext from "../Context/UserContext";
 import { useState, useEffect } from "react";
@@ -18,6 +21,15 @@ import axios from "axios";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [page, setPage] = useState(1);
+  const [modalAddVisible, setModalAddVisible] = useState(false);
+  const [modalConnectionVisible, setModalConnectionVisible] = useState(false);
+  const [dataMovie, setDataMovie] = useState(null);
+  const [add, setAdd] = useState(true);
+
+  const pageFunc = (num) => {
+    setPage(num);
+  };
 
   const login = (user) => {
     console.log("Loginfunc user===>", user);
@@ -52,18 +64,58 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <UserContext.Provider value={{ user, logout, login }}>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/details/:id" element={<MovieDetails />} />
-          <Route path="/all/:cat" element={<Allmovies />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </UserContext.Provider>
-    </Router>
+    <div className={(modalAddVisible || modalConnectionVisible) && "app"}>
+      <Router>
+        <UserContext.Provider value={{ user, logout, login, setDataMovie }}>
+          <Header page={page} pageFunc={pageFunc} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/details/:id"
+              element={
+                <MovieDetails
+                  modalAddVisible={modalAddVisible}
+                  setModalAddVisible={setModalAddVisible}
+                  modalConnectionVisible={modalConnectionVisible}
+                  setModalConnectionVisible={setModalConnectionVisible}
+                />
+              }
+            />
+            <Route
+              path="/all/:cat"
+              element={<Allmovies page={page} pageFunc={pageFunc} />}
+            />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/collections"
+              element={
+                <Collections
+                  modalAddVisible={modalAddVisible}
+                  setModalAddVisible={setModalAddVisible}
+                  user={user}
+                  add={add}
+                />
+              }
+            />
+          </Routes>
+          {modalAddVisible && (
+            <ModalAddMovie
+              setModalAddVisible={setModalAddVisible}
+              dataMovie={dataMovie}
+              user={user}
+              add={add}
+              setAdd={setAdd}
+            />
+          )}
+          {modalConnectionVisible && (
+            <ModalConnection
+              setModalConnectionVisible={setModalConnectionVisible}
+            />
+          )}
+        </UserContext.Provider>
+      </Router>
+    </div>
   );
 }
 

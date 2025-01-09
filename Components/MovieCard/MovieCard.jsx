@@ -11,7 +11,7 @@ const MovieCard = ({ content }) => {
       try {
         const response = await axios.get(
           `http://localhost:3000/movies/${content}/?page=${
-            content === "playing" ? "2" : content === "upComing" ? "3" : "1"
+            content === "playing" ? 2 : 1
           }`
         );
         setData(response.data.results);
