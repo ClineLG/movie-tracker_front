@@ -10,6 +10,7 @@ import Allmovies from "../Pages/AllMovies/AllMovies";
 import Signup from "../Pages/Signup/Sigup";
 import Login from "../Pages/Login/login";
 import Collections from "../Pages/Collections/Collections";
+import MovieCollectionDetails from "../Pages/MovieCollectionDetails/MovieCollectionDetails";
 //components
 import Header from "../Components/Header/Header";
 import ModalConnection from "../Components/modalConnection/modalConnection";
@@ -88,7 +89,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route
-              path="/collections"
+              path="/myMovies"
               element={
                 <Collections
                   modalAddVisible={modalAddVisible}
@@ -97,6 +98,10 @@ function App() {
                   add={add}
                 />
               }
+            />
+            <Route
+              path="/myMovie/:id"
+              element={<MovieCollectionDetails user={user} />}
             />
           </Routes>
           {modalAddVisible && (

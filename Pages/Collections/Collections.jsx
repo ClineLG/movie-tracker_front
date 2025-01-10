@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import "./collections.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Collections = ({ modalAddVisible, setModalAddVisible, user, add }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [collections, setCollections] = useState(null);
   const [message, setMassage] = useState("");
-  const [asset, setAsset] = useState(null);
 
   useEffect(() => {
     modalAddVisible && setModalAddVisible(false);
@@ -17,28 +17,13 @@ const Collections = ({ modalAddVisible, setModalAddVisible, user, add }) => {
             Authorization: "Bearer " + user.token,
           },
         });
-        if (response.data.fav && response.data.fav.length > 0) {
-          const tab = response.data.fav;
-          setCollections(tab);
-          try {
-            const response2 = await axios.get(
-              "http://localhost:3000/user/favAsset",
-              {
-                headers: {
-                  Authorization: "Bearer " + user.token,
-                },
-              }
-            );
-            setAsset(response2.data);
-          } catch (error) {
-            console.log(error);
-          }
-        } else {
+        if (!response.data.count || response.data.count < 1) {
           setMassage(
             "Vous n'avez pas de Films dans vos collections pour le moment"
           );
         }
-        console.log(response.data);
+        console.log("RESPONSE>>>>>>>>>", response.data);
+        setCollections(response.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -57,16 +42,25 @@ const Collections = ({ modalAddVisible, setModalAddVisible, user, add }) => {
         {message ? (
           <p>{message}</p>
         ) : (
-          <div>
-            {asset.map((asset, index) => {
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "40px" }}
+          >
+            {collections.results.map((asset, index) => {
               return (
                 <div key={index}>
-                  {/* {collections.map((film) => {
-                    return (
-                      film.asset === asset && <img src={film.movie.poster} />
-                    );
-                  })} */}
-                  <p>{asset}</p>
+                  <p>{asset.name}</p>
+                  <div style={{ display: "flex", overflow: "scroll" }}>
+                    {asset.movies.map((film) => {
+                      return film.map((mov) => {
+                        return (
+                          <Link to={`/myMovie/${mov._id}`} key={mov._id}>
+                            <img src={mov.movie.poster} alt="" />
+                            <p>{mov.movie.title}</p>
+                          </Link>
+                        );
+                      });
+                    })}
+                  </div>
                 </div>
               );
             })}

@@ -76,7 +76,7 @@ const ModalAddMovie = ({
         {done ? (
           <div>
             <p>Ajouté avec succés à vos collections !</p>
-            <Link to={"/collections"}>Voir mes Collections</Link>
+            <Link to={"/myMovies"}>Voir mes Collections</Link>
           </div>
         ) : (
           <form
