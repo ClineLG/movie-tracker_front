@@ -6,14 +6,15 @@ import userContext from "../../Context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = ({ pageFunc }) => {
-  const { user } = useContext(userContext);
+  const { user, logout } = useContext(userContext);
   console.log("user", user);
   const navigate = useNavigate();
   const [query, setQuery] = useState({
     cat: 0,
     search: "",
   });
-  console.log(query);
+  const [menus, setMenus] = useState(false);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     // console.log(query.cat);
@@ -47,6 +48,20 @@ const Header = ({ pageFunc }) => {
         search: "",
       };
       setQuery(obj);
+    }
+  };
+
+  const handleSubmitAccount = (action) => {
+    switch (action) {
+      case "deconnection":
+        logout();
+        navigate("/");
+        break;
+      case "Account":
+        navigate("/account");
+        break;
+      case "collections":
+        navigate("/myMovies");
     }
   };
 
@@ -91,7 +106,39 @@ const Header = ({ pageFunc }) => {
         </form>
         {user ? (
           <div>
-            <p>{user.username}</p>
+            <div
+              onClick={() => {
+                setMenus(!menus);
+              }}
+            >
+              <h2>{user.username}</h2>
+              {user.avatar && <img src={user.avatar} alt="my avatar" />}
+            </div>
+            {menus && (
+              <div>
+                <div
+                  onClick={() => {
+                    handleSubmitAccount("collections");
+                  }}
+                >
+                  Mes Collections
+                </div>
+                <div
+                  onClick={() => {
+                    handleSubmitAccount("Account");
+                  }}
+                >
+                  gérer mon profil
+                </div>
+                <div
+                  onClick={() => {
+                    handleSubmitAccount("deconnection");
+                  }}
+                >
+                  Déconnection
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           <button

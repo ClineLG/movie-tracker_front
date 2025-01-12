@@ -5,14 +5,39 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
 
-const MovieCollectionDetails = ({ user }) => {
+const MovieCollectionDetails = ({ user, add, setAdd }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [editLoading, setEditLoading] = useState(false);
   const [edit, setEdit] = useState(false);
   const [userEdit, setUserEdit] = useState(null);
+  const [asset, setAsset] = useState(null);
+  const [addCol, setAddCol] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const handleSubmit = async (e, index) => {
+    e.preventDefault();
+    setEditLoading(true);
+    try {
+      const response = await axios.put(
+        `http://localhost:3000/user/collection/details/${index}`,
+        { asset: userEdit.asset, comment: userEdit.comment },
+        {
+          headers: {
+            Authorization: "Bearer " + user.token,
+          },
+        }
+      );
+      console.log("SubmitResponse", response.data);
+      setEdit(false);
+      setEditLoading(false);
+    } catch (error) {
+      console.log(error);
+      setEditLoading(false);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,13 +50,23 @@ const MovieCollectionDetails = ({ user }) => {
             },
           }
         );
-        console.log(response.data);
+        const response2 = await axios.get(
+          "http://localhost:3000/user/favAsset",
+          {
+            headers: {
+              Authorization: "Bearer " + user.token,
+            },
+          }
+        );
+        setAsset(response2.data);
+        setAdd(!add);
+        console.log("Response1", response.data);
         setData(response.data);
         const obj = {
           asset: response.data.result.asset,
           comment: response.data.result.comment,
         };
-        setEdit(obj);
+        setUserEdit(obj);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -39,7 +74,7 @@ const MovieCollectionDetails = ({ user }) => {
       }
     };
     fetchData();
-  }, [user]);
+  }, [user, edit]);
 
   const handleDelete = async (index) => {
     try {
@@ -57,10 +92,6 @@ const MovieCollectionDetails = ({ user }) => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  };
-
   return !user ? (
     <div className="loading">Unauthorized</div>
   ) : isLoading ? (
@@ -68,20 +99,54 @@ const MovieCollectionDetails = ({ user }) => {
   ) : (
     <section>
       <div className="container">
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={(e) => handleSubmit(e, data.index)}>
           <h1>Rangé dans : </h1>
-          <input
-            type="text"
-            value={edit.asset}
-            onChange={(e) => {
-              if (edit) {
-                const obj = { ...edit, asset: e.target.value };
-                setEdit(obj);
-              } else {
-                null;
-              }
-            }}
-          />
+          {!edit ? (
+            <span>{data.result.asset}</span>
+          ) : (
+            <div>
+              <label htmlFor="asset">Mettre de coté dans un dossier : </label>
+              <select
+                name="asset"
+                value={!addCol ? userEdit.asset : "ajouter une collection"}
+                onChange={(event) => {
+                  if (event.target.value === "ajouter une collection") {
+                    setAddCol(true);
+                    const obj = { ...userEdit, asset: "" };
+                    setUserEdit(obj);
+                  } else {
+                    const obj = { ...userEdit, asset: event.target.value };
+                    setUserEdit(obj);
+                  }
+                }}
+              >
+                {asset.map((asset, index) => {
+                  return (
+                    <option value={asset} key={index}>
+                      {asset}
+                    </option>
+                  );
+                })}
+                <option value={"ajouter une collection"} key={"+"}>
+                  Ajouter une Collection
+                </option>
+              </select>
+              {addCol && (
+                <input
+                  type="text"
+                  name="asset"
+                  id="asset"
+                  placeholder="ma nouvelle collection"
+                  onChange={(event) => {
+                    const obj = { ...userEdit, asset: event.target.value };
+                    setUserEdit(obj);
+                  }}
+                  value={userEdit.asset}
+                />
+              )}
+            </div>
+          )}
+
           <div>
             <h1> {data.result.movie.title}</h1>
             <FaTrashAlt
@@ -132,25 +197,39 @@ const MovieCollectionDetails = ({ user }) => {
               )}
             </div>
             {data.result.comment ? (
-              <input
-                type="text"
-                value={!edit ? data.result.comment : edit.comment}
-              />
+              !edit ? (
+                <div>
+                  <p>Mon commentaire :</p>
+                  <p>{data.result.comment}</p>
+                </div>
+              ) : (
+                <textarea
+                  type="text"
+                  placeholder="Ajouter un commentaire"
+                  value={userEdit.comment}
+                  onChange={(e) => {
+                    const obj = { ...edit, comment: e.target.value };
+                    setUserEdit(obj);
+                  }}
+                />
+              )
             ) : (
-              <textarea
-                type="text"
-                value={!edit ? "ajouter un commentaire ?" : edit.comment}
-                onChange={(e) => {
-                  if (edit) {
-                    const obj = { ...edit, comment: e.target.comment };
-                    setEdit(obj);
-                  } else {
-                    null;
-                  }
-                }}
-              />
+              !data.result.comment &&
+              edit && (
+                <textarea
+                  type="text"
+                  placeholder="Ajouter un commentaire"
+                  value={userEdit.comment}
+                  onChange={(e) => {
+                    const obj = { ...edit, comment: e.target.value };
+                    setUserEdit(obj);
+                  }}
+                />
+              )
             )}
-            {edit && <button>Editer</button>}
+            {edit && (
+              <button disabled={editLoading ? true : false}>Editer</button>
+            )}
           </div>
         </form>
       </div>

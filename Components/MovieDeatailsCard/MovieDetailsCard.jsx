@@ -16,6 +16,7 @@ const MovieDetailsCard = ({ data }) => {
     tagline,
     revenue,
     runtime,
+    id,
   } = data;
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const MovieDetailsCard = ({ data }) => {
       revenue: revenue,
       tagline: tagline,
       runtime: runtime,
+      id: id,
     };
     setDataMovie(obj);
   }, []);
@@ -64,9 +66,9 @@ const MovieDetailsCard = ({ data }) => {
       </div>
 
       <p>{overview}</p>
-      <p>durée : {runtime}min</p>
+      {runtime !== 0 && <p>durée : {runtime}min</p>}
       <div>
-        <p>budget pour le film : {budget} ＄</p>
+        {budget !== 0 && <p>budget pour le film : {budget} ＄</p>}
         {revenue !== 0 && <p>recette du film : {revenue} ＄</p>}
       </div>
     </div>
