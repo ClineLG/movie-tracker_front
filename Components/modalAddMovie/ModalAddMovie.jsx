@@ -18,7 +18,7 @@ const ModalAddMovie = ({
   const [errorMessage, setErrorMessage] = useState("");
   const [done, setDone] = useState(false);
   const [assetCol, setAssetCol] = useState(null);
-
+  const [addCol, setAddCol] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -76,7 +76,7 @@ const ModalAddMovie = ({
         {done ? (
           <div>
             <p>Ajouté avec succés à vos collections !</p>
-            <Link to={"/collections"}>Voir mes Collections</Link>
+            <Link to={"/myMovies"}>Voir mes Collections</Link>
           </div>
         ) : (
           <form
@@ -88,9 +88,14 @@ const ModalAddMovie = ({
               <label htmlFor="asset">Mettre de coté dans un dossier : </label>
               <select
                 name="asset"
-                value={asset}
+                value={!addCol ? asset : "ajouter une collection"}
                 onChange={(event) => {
-                  setAsset(event.target.value);
+                  if (event.target.value === "ajouter une collection") {
+                    setAddCol(true);
+                    setAsset("");
+                  } else {
+                    setAsset(event.target.value);
+                  }
                 }}
               >
                 {assetCol.map((asset, index) => {
@@ -100,24 +105,29 @@ const ModalAddMovie = ({
                     </option>
                   );
                 })}
+                <option value={"ajouter une collection"} key={"+"}>
+                  Ajouter une Collection
+                </option>
               </select>
-              <input
-                type="text"
-                name="asset"
-                id="asset"
-                placeholder="A regarder plus tard"
-                onChange={(event) => {
-                  setAsset(event.target.value);
-                }}
-                value={asset}
-              />
+              {addCol && (
+                <input
+                  type="text"
+                  name="asset"
+                  id="asset"
+                  placeholder="A regarder plus tard"
+                  onChange={(event) => {
+                    setAsset(event.target.value);
+                  }}
+                  value={asset}
+                />
+              )}
             </div>
 
             <div>
               <label htmlFor="comment">
                 Un commentaire à relire plus tard ?
               </label>
-              <input
+              <textarea
                 type="text"
                 name="comment"
                 id="comment"

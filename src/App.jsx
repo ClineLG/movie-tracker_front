@@ -10,6 +10,8 @@ import Allmovies from "../Pages/AllMovies/AllMovies";
 import Signup from "../Pages/Signup/Sigup";
 import Login from "../Pages/Login/login";
 import Collections from "../Pages/Collections/Collections";
+import MovieCollectionDetails from "../Pages/MovieCollectionDetails/MovieCollectionDetails";
+import UpdateAccount from "../Pages/updateAccount/updateAccount";
 //components
 import Header from "../Components/Header/Header";
 import ModalConnection from "../Components/modalConnection/modalConnection";
@@ -64,7 +66,7 @@ function App() {
   }, []);
 
   return (
-    <div className={(modalAddVisible || modalConnectionVisible) && "app"}>
+    <div className={modalAddVisible || modalConnectionVisible ? "app" : ""}>
       <Router>
         <UserContext.Provider value={{ user, logout, login, setDataMovie }}>
           <Header page={page} pageFunc={pageFunc} />
@@ -85,10 +87,26 @@ function App() {
               path="/all/:cat"
               element={<Allmovies page={page} pageFunc={pageFunc} />}
             />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
             <Route
-              path="/collections"
+              path="/signup"
+              element={
+                <Signup
+                  setModalConnectionVisible={setModalConnectionVisible}
+                  modalConnectionVisible={modalConnectionVisible}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <Login
+                  setModalConnectionVisible={setModalConnectionVisible}
+                  modalConnectionVisible={modalConnectionVisible}
+                />
+              }
+            />
+            <Route
+              path="/myMovies"
               element={
                 <Collections
                   modalAddVisible={modalAddVisible}
@@ -96,6 +114,18 @@ function App() {
                   user={user}
                   add={add}
                 />
+              }
+            />
+            <Route
+              path="/myMovie/:id"
+              element={
+                <MovieCollectionDetails user={user} add={add} setAdd={setAdd} />
+              }
+            />
+            <Route
+              path="/account"
+              element={
+                <UpdateAccount user={user} login={login} logout={logout} />
               }
             />
           </Routes>
@@ -110,6 +140,7 @@ function App() {
           )}
           {modalConnectionVisible && (
             <ModalConnection
+              dataMovie={dataMovie}
               setModalConnectionVisible={setModalConnectionVisible}
             />
           )}

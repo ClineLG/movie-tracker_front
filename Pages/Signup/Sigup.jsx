@@ -1,9 +1,9 @@
 import "./signup.css";
 import axios from "axios";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import UserContext from "../../Context/UserContext";
-const Signup = () => {
+const Signup = ({ setModalConnectionVisible, modalConnectionVisible }) => {
   const navigate = useNavigate();
   const { login } = useContext(UserContext);
   const location = useLocation();
@@ -18,6 +18,10 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [imageUpload, setImageUpload] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+
+  useEffect(() => {
+    modalConnectionVisible && setModalConnectionVisible(false);
+  }, []);
 
   const handleChange = (event, str) => {
     setErrorMessage(null);

@@ -1,9 +1,9 @@
 import "./login.css";
 import axios from "axios";
-import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import UserContext from "../../Context/UserContext";
-const Login = () => {
+const Login = ({ setModalConnectionVisible, modalConnectionVisible }) => {
   const navigate = useNavigate();
   const { login } = useContext(UserContext);
   const [userDetails, setUserDetails] = useState({
@@ -12,6 +12,19 @@ const Login = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  const location = useLocation();
+  let from = "";
+  if (location.state) {
+    from = location.state.from;
+  } else {
+    from = "/";
+  }
+
+  useEffect(() => {
+    if (modalConnectionVisible) {
+      setModalConnectionVisible(false);
+    }
+  }, []);
 
   const handleChange = (event, str) => {
     setErrorMessage(null);
@@ -38,8 +51,9 @@ const Login = () => {
         console.log(response.data);
 
         login(response.data);
-        navigate("/");
+        navigate(from);
       } catch (error) {
+        console.log(error.response);
         if (
           error.response.data.message === "Email address unknown" ||
           error.response.data.message === "wrong parameters"
