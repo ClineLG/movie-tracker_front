@@ -23,7 +23,7 @@ const ModalAddMovie = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/user/favAsset",
+          "https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/favAsset",
           {
             headers: {
               Authorization: "Bearer " + user.token,
@@ -45,7 +45,7 @@ const ModalAddMovie = ({
     try {
       setIsLoading(true);
       const response = await axios.put(
-        `http://localhost:3000/user/addMovie`,
+        `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/addMovie`,
         { movie: dataMovie, comment: comment, asset: asset },
         {
           headers: {
@@ -70,13 +70,16 @@ const ModalAddMovie = ({
           onClick={() => {
             setModalAddVisible(false);
           }}
+          className="button"
         >
-          ferme la
+          X
         </button>
         {done ? (
-          <div>
-            <p>Ajouté avec succés à vos collections !</p>
-            <Link to={"/myMovies"}>Voir mes Collections</Link>
+          <div className="result">
+            <p className="center">Ajouté avec succés à vos collections !</p>
+            <Link to={"/myMovies"} className="buttonall">
+              Voir mes Collections
+            </Link>
           </div>
         ) : (
           <form
@@ -85,7 +88,7 @@ const ModalAddMovie = ({
             }}
           >
             <div>
-              <label htmlFor="asset">Mettre de coté dans un dossier : </label>
+              <label htmlFor="asset">Ajouter à une collection : </label>
               <select
                 name="asset"
                 value={!addCol ? asset : "ajouter une collection"}
@@ -139,7 +142,10 @@ const ModalAddMovie = ({
               />
             </div>
             {errorMessage && <p>{errorMessage}</p>}
-            <button disabled={AddIsLoading ? true : false}>
+            <button
+              disabled={AddIsLoading ? true : false}
+              className="buttonall"
+            >
               Enregistrer dans mes collections
             </button>
           </form>

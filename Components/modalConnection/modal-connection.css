@@ -1,0 +1,11 @@
+.modalContent .co {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.co div {
+  display: flex;
+  width: 60%;
+}

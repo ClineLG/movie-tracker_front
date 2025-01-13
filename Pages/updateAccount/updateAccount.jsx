@@ -66,7 +66,7 @@ const UpdateAccount = ({ user, login, logout }) => {
 
       try {
         const response = await axios.put(
-          "http://localhost:3000/user/update",
+          "https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/update",
           formData,
           {
             headers: {
@@ -91,11 +91,14 @@ const UpdateAccount = ({ user, login, logout }) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.delete("http://localhost:3000/user/delete", {
-        headers: {
-          Authorization: "Bearer " + user.token,
-        },
-      });
+      const response = await axios.delete(
+        "https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/delete",
+        {
+          headers: {
+            Authorization: "Bearer " + user.token,
+          },
+        }
+      );
       setEdit(false);
       logout();
       navigate("/");

@@ -9,16 +9,30 @@ const ModalConnection = ({ setModalConnectionVisible, dataMovie }) => {
           onClick={() => {
             setModalConnectionVisible(false);
           }}
+          className="button"
         >
-          fermer
+          X
         </button>
-        <p>Vous devez être connecté pour ajoiuter ce film à vos collections</p>
-        <Link to="/signup" state={{ from: `/details/${dataMovie.id}` }}>
-          S'inscrire
-        </Link>
-        <Link to="/login" state={{ from: `/details/${dataMovie.id}` }}>
-          Se connecter
-        </Link>
+        <div className="co">
+          <p>Vous devez être connecté pour ajouter ce film à vos collections</p>
+
+          <div>
+            <Link
+              className="buttonall"
+              to="/signup"
+              state={{ from: `/details/${dataMovie.id}` }}
+            >
+              S'inscrire
+            </Link>
+            <Link
+              className="buttonall"
+              to="/login"
+              state={{ from: `/details/${dataMovie.id}` }}
+            >
+              Se connecter
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );

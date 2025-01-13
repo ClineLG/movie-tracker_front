@@ -49,7 +49,7 @@ function App() {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            "http://localhost:3000/user/details",
+            "https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/details",
             {
               headers: {
                 Authorization: "Bearer " + token,
@@ -68,10 +68,12 @@ function App() {
   return (
     <div className={modalAddVisible || modalConnectionVisible ? "app" : ""}>
       <Router>
-        <UserContext.Provider value={{ user, logout, login, setDataMovie }}>
+        <UserContext.Provider
+          value={{ user, logout, login, setDataMovie, pageFunc }}
+        >
           <Header page={page} pageFunc={pageFunc} />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home pageFunc={pageFunc} />} />
             <Route
               path="/details/:id"
               element={
@@ -119,7 +121,12 @@ function App() {
             <Route
               path="/myMovie/:id"
               element={
-                <MovieCollectionDetails user={user} add={add} setAdd={setAdd} />
+                <MovieCollectionDetails
+                  user={user}
+                  add={add}
+                  setAdd={setAdd}
+                  pageFunc={pageFunc}
+                />
               }
             />
             <Route

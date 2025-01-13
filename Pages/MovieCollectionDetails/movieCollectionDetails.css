@@ -1,0 +1,69 @@
+.com {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  height: 200px;
+}
+
+.my-movie {
+  margin-top: 40px;
+}
+.my-movie .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.edit-buttons {
+  display: flex;
+  gap: 30px;
+}
+.ed {
+  color: white;
+  font-size: 34px;
+}
+.my-movie label {
+  color: gray;
+  font-size: 15px;
+}
+.edit {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.edit select {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+textarea:focus {
+  outline: none;
+}
+textarea {
+  border: none;
+}
+.my-movie textarea {
+  width: 100%;
+  height: 100%;
+  resize: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+.my-movie input {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  width: 20%;
+}
+.collect {
+  font-size: 20px;
+}
+.collect span {
+  color: #62d555;
+}
+
+.label:hover,
+.edit-buttons:hover {
+  cursor: pointer;
+}

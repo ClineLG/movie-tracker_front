@@ -12,17 +12,20 @@ const Collections = ({ modalAddVisible, setModalAddVisible, user, add }) => {
     modalAddVisible && setModalAddVisible(false);
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/user/fav", {
-          headers: {
-            Authorization: "Bearer " + user.token,
-          },
-        });
+        const response = await axios.get(
+          "https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/fav",
+          {
+            headers: {
+              Authorization: "Bearer " + user.token,
+            },
+          }
+        );
         if (!response.data.count || response.data.count < 1) {
           setMassage(
             "Vous n'avez pas de Films dans vos collections pour le moment"
           );
         }
-        console.log("RESPONSE>>>>>>>>>", response.data);
+        // console.log("RESPONSE>>>>>>>>>", response.data);
         setCollections(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -37,25 +40,27 @@ const Collections = ({ modalAddVisible, setModalAddVisible, user, add }) => {
   ) : isLoading ? (
     <div className="loading">Loading</div>
   ) : (
-    <section>
+    <section className="colall">
       <div className="container">
         {message ? (
           <p>{message}</p>
         ) : (
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "40px" }}
-          >
+          <div className="collections">
             {collections.results.map((asset, index) => {
               return (
-                <div key={index}>
-                  <p>{asset.name}</p>
-                  <div style={{ display: "flex", overflow: "scroll" }}>
+                <div key={index} className="col-section">
+                  <h1>{asset.name}</h1>
+                  <div className="movies-container">
                     {asset.movies.map((film) => {
                       return film.map((mov) => {
                         return (
-                          <Link to={`/myMovie/${mov._id}`} key={mov._id}>
+                          <Link
+                            to={`/myMovie/${mov._id}`}
+                            className="MovieCard"
+                            key={mov._id}
+                          >
                             <img src={mov.movie.poster} alt="" />
-                            <p>{mov.movie.title}</p>
+                            <h2>{mov.movie.title}</h2>
                           </Link>
                         );
                       });

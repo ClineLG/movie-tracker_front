@@ -1,0 +1,18 @@
+.allmovies {
+  padding-top: 40px;
+}
+.allmovies h1 {
+  margin-bottom: 40px;
+}
+.page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+  color: white;
+  gap: 10px;
+}
+.white:hover {
+  font-weight: 800;
+  cursor: pointer;
+}

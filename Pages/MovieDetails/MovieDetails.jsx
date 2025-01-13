@@ -13,7 +13,9 @@ const MovieDetails = ({ setModalAddVisible, setModalConnectionVisible }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/movies/${id}`);
+        const response = await axios.get(
+          `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/movies/${id}`
+        );
 
         console.log(response.data);
         setData(response.data);
@@ -28,14 +30,15 @@ const MovieDetails = ({ setModalAddVisible, setModalConnectionVisible }) => {
   return isLoading ? (
     <div className="loading">Loading</div>
   ) : (
-    <section>
+    <section className="details">
       <div className="container">
         <button
           onClick={() => {
             user ? setModalAddVisible(true) : setModalConnectionVisible(true);
           }}
+          className="buttonall"
         >
-          se mettre ca de coté
+          Ajouter à une collection
         </button>
         <MovieDetailsCard data={data} />
       </div>

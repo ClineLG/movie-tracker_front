@@ -1,17 +1,25 @@
+header {
+  /* background-color: gray; */
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.385);
+}
+
 .logo-container {
   font-size: 30px;
   display: flex;
+  color: white;
+  text-decoration: none;
 }
 
 header .container {
-  background-color: aqua;
   padding: 30px 0;
   display: flex;
   justify-content: space-between;
 }
 
 header form {
-  background-color: aquamarine;
   margin-right: 40px;
   flex: 1;
   display: flex;
@@ -19,5 +27,97 @@ header form {
 }
 header input {
   margin-left: 20px;
+  margin-right: 20px;
+
   width: 40%;
+  border: none;
+  border-radius: 5px;
+}
+header form button {
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(98, 213, 85);
+  color: white;
+  padding: 0 10px;
+}
+
+header form button:hover {
+  cursor: pointer;
+  background-color: rgb(93, 224, 78);
+}
+header select {
+  border: none;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+input,
+select:focus {
+  outline: none;
+}
+
+.absolute-user {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 50px;
+}
+
+header .user {
+  width: 100%;
+  min-width: 150px;
+  justify-content: flex-start;
+  background-color: rgb(98, 213, 85);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgb(98, 213, 85);
+  color: white;
+}
+.button:hover {
+  cursor: pointer;
+  background-color: rgb(93, 224, 78);
+}
+.avatar {
+  border: solid 1px rgb(29, 233, 7);
+  height: 30px;
+  width: 30px;
+  border-radius: 10px;
+}
+
+header .user:hover {
+  cursor: pointer;
+  background-color: rgb(93, 224, 78);
+}
+
+header .relative {
+  position: relative;
+}
+header .absolute {
+  width: 100%;
+  background-color: rgba(98, 213, 85, 0.738);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 2;
+}
+header .absolute div {
+  border: 1px solid rgba(128, 128, 128, 0.396);
+  padding: 10px;
+  color: white;
+  font-size: 16px;
+}
+header .absolute div:hover {
+  cursor: pointer;
+  background-color: rgb(98, 213, 85);
 }
