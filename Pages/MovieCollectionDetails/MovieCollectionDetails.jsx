@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
 import { MdOutlineEdit } from "react-icons/md";
 
-const MovieCollectionDetails = ({ user, add, setAdd }) => {
+const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +22,7 @@ const MovieCollectionDetails = ({ user, add, setAdd }) => {
     setEditLoading(true);
     try {
       const response = await axios.put(
-        `http://localhost:3000/user/collection/details/${index}`,
+        `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/collection/details/${index}`,
         { asset: userEdit.asset, comment: userEdit.comment },
         {
           headers: {
@@ -43,7 +43,7 @@ const MovieCollectionDetails = ({ user, add, setAdd }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/user/collection/details/${id}`,
+          `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/collection/details/${id}`,
           {
             headers: {
               Authorization: "Bearer " + user.token,
@@ -51,7 +51,7 @@ const MovieCollectionDetails = ({ user, add, setAdd }) => {
           }
         );
         const response2 = await axios.get(
-          "http://localhost:3000/user/favAsset",
+          "https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/favAsset",
           {
             headers: {
               Authorization: "Bearer " + user.token,
@@ -79,7 +79,7 @@ const MovieCollectionDetails = ({ user, add, setAdd }) => {
   const handleDelete = async (index) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/user/collection/details/${index}`,
+        `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/collection/details/${index}`,
         {
           headers: {
             Authorization: "Bearer " + user.token,
@@ -98,14 +98,31 @@ const MovieCollectionDetails = ({ user, add, setAdd }) => {
     <div className="loading">Loading</div>
   ) : (
     <section>
-      <div className="container">
+      <div className="container my-movie">
         <form onSubmit={(e) => handleSubmit(e, data.index)}>
-          <h1>Rangé dans : </h1>
-          {!edit ? (
-            <span>{data.result.asset}</span>
-          ) : (
-            <div>
-              <label htmlFor="asset">Mettre de coté dans un dossier : </label>
+          <div className="top">
+            <h1 className="collect">
+              Rangé dans <span> {data.result.asset}</span>
+            </h1>
+
+            <div className="edit-buttons">
+              <MdOutlineEdit
+                className="ed"
+                onClick={() => {
+                  setEdit(!edit);
+                }}
+              />{" "}
+              <FaTrashAlt
+                className="ed"
+                onClick={() => {
+                  handleDelete(data.index);
+                }}
+              />
+            </div>
+          </div>
+          {edit && (
+            <div className="edit">
+              <label htmlFor="asset">Déplacer vers : </label>
               <select
                 name="asset"
                 value={!addCol ? userEdit.asset : "ajouter une collection"}
@@ -146,89 +163,110 @@ const MovieCollectionDetails = ({ user, add, setAdd }) => {
               )}
             </div>
           )}
-
-          <div>
+          <div className="carddetails">
             <h1> {data.result.movie.title}</h1>
-            <FaTrashAlt
-              onClick={() => {
-                handleDelete(data.index);
-              }}
-            />
-            <MdOutlineEdit
-              onClick={() => {
-                setEdit(true);
-              }}
-            />
             {data.result.movie.original_title !== data.result.movie.title && (
               <p>{data.result.movie.original_title}</p>
             )}
-            {data.result.movie.tagline && <p>{data.result.movie.tagline}</p>}
+            {data.result.movie.tagline && (
+              <p className="tagline">{data.result.movie.tagline}</p>
+            )}
             <img src={data.result.movie.poster} alt={data.result.movie.title} />
-            <div>
+            <div className="genreD">
               {data.result.movie.genres.map((genre) => {
-                return <p key={genre.id}>{genre.name}</p>;
-              })}
-            </div>
-            <p>Sortie le {data.result.movie.release_date}</p>
-            <div>
-              <p>Produit par</p>
-              {data.result.movie.production_companies.map((prod) => {
                 return (
-                  <div key={prod.name}>
-                    <img
-                      src={"https://image.tmdb.org/t/p/w500" + prod.logo_path}
-                      alt={prod.name}
-                    />
-                    <span>{prod.name}</span>
+                  <div
+                    key={genre.id}
+                    onClick={() => {
+                      pageFunc(1);
+                      navigate(`/all/${genre.id}`);
+                    }}
+                  >
+                    <p className="genrep">{genre.name}</p>
                   </div>
                 );
               })}
             </div>
+            <p className="sortie">
+              <span>Sortie : </span> {data.result.movie.release_date}
+            </p>
+            <span className="left">Produit par :</span>
+            <div className="flex">
+              {data.result.movie.production_companies.map((prod) => {
+                return (
+                  <div key={prod.name} className="prod">
+                    {prod.logo_path && (
+                      <img
+                        src={"https://image.tmdb.org/t/p/w500" + prod.logo_path}
+                        alt={prod.name}
+                      />
+                    )}
+                    <p>{prod.name}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <span className="left">Synopsis :</span>
+
             <p>{data.result.movie.overview}</p>
-            {data.result.movie.runtime !== 0 && (
-              <p>durée : {data.result.movie.runtime}min</p>
-            )}
-            <div>
+
+            <div className="left endLine">
+              {data.result.movie.runtime !== 0 && (
+                <p>durée : {data.result.movie.runtime}min</p>
+              )}
+
               {data.result.movie.budgete !== 0 && (
-                <p>budget pour le film : {data.result.movie.budget}＄</p>
+                <p>budget : {data.result.movie.budget}＄</p>
               )}
               {data.result.movie.revenue !== 0 && (
-                <p>recette du film : {data.result.movie.revenue} ＄</p>
+                <p>recette : {data.result.movie.revenue} ＄</p>
               )}
             </div>
+
             {data.result.comment ? (
               !edit ? (
-                <div>
-                  <p>Mon commentaire :</p>
+                <div className="left com">
+                  <span>Mon commentaire :</span>
                   <p>{data.result.comment}</p>
                 </div>
               ) : (
-                <textarea
-                  type="text"
-                  placeholder="Ajouter un commentaire"
-                  value={userEdit.comment}
-                  onChange={(e) => {
-                    const obj = { ...edit, comment: e.target.value };
-                    setUserEdit(obj);
-                  }}
-                />
+                <div className="left com">
+                  <span>Mon commentaire :</span>
+                  <textarea
+                    type="text"
+                    placeholder="Ajouter un commentaire"
+                    value={userEdit.comment}
+                    onChange={(e) => {
+                      const obj = { ...edit, comment: e.target.value };
+                      setUserEdit(obj);
+                    }}
+                  />{" "}
+                </div>
               )
             ) : (
               !data.result.comment &&
               edit && (
-                <textarea
-                  type="text"
-                  placeholder="Ajouter un commentaire"
-                  value={userEdit.comment}
-                  onChange={(e) => {
-                    const obj = { ...edit, comment: e.target.value };
-                    setUserEdit(obj);
-                  }}
-                />
+                <div className="left com">
+                  <span>Mon commentaire :</span>
+                  <textarea
+                    type="text"
+                    placeholder="Ajouter un commentaire"
+                    value={userEdit.comment}
+                    onChange={(e) => {
+                      const obj = { ...edit, comment: e.target.value };
+                      setUserEdit(obj);
+                    }}
+                  />
+                </div>
               )
             )}
             {edit && (
-              <button disabled={editLoading ? true : false}>Editer</button>
+              <button
+                className="buttonall"
+                disabled={editLoading ? true : false}
+              >
+                Editer
+              </button>
             )}
           </div>
         </form>

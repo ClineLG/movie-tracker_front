@@ -10,7 +10,7 @@ const MovieCard = ({ content }) => {
     const fetchdata = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/movies/${content}/?page=${
+          `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/movies/${content}/?page=${
             content === "playing" ? 2 : 1
           }`
         );

@@ -2,9 +2,77 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  background-color: black;
 }
 .home .hero {
-  background-color: aquamarine;
+  border-top: 2px white solid;
+  border-bottom: 2px white solid;
+  height: 50vh;
   margin-top: 40px;
+  position: relative;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+}
+.hero div {
+  position: absolute;
+  left: 0;
+  top: 150px;
+  background-color: rgba(0, 0, 0, 0.536);
+  font-size: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  padding: 15px;
+}
+.hero p {
+  width: 75%;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.hero .button {
+  width: fit-content;
+  font-size: 20px;
+}
+.home .genre {
+  margin-top: 40px;
+}
+
+.genre div {
+  margin-top: 20px;
+  display: flex;
+  gap: 30px;
+  row-gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.genrep {
+  border: 2px white solid;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 55px;
+}
+.genrep:hover {
+  background-color: rgba(93, 224, 78, 0.6);
+  cursor: pointer;
+}
+.buttonall {
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: rgb(98, 213, 85);
+  color: white;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.buttonall:hover {
+  cursor: pointer;
+  background-color: rgb(72, 228, 55);
 }

@@ -54,13 +54,18 @@ const Header = ({ pageFunc }) => {
   const handleSubmitAccount = (action) => {
     switch (action) {
       case "deconnection":
+        setMenus(false);
         logout();
         navigate("/");
         break;
       case "Account":
+        setMenus(false);
+
         navigate("/account");
         break;
       case "collections":
+        setMenus(false);
+
         navigate("/myMovies");
     }
   };
@@ -70,13 +75,23 @@ const Header = ({ pageFunc }) => {
       <div className="container">
         <Link to="/" className="logo-container">
           <MdLocalMovies />
-          <p>Movie-Tracker</p>
+          <p>MovieTracker</p>
         </Link>
         <form
           onSubmit={(event) => {
             handleSubmit(event);
           }}
         >
+          <input
+            type="text"
+            name="search"
+            placeholder="mots clés"
+            onChange={(event) => {
+              const obj = { ...query, search: event.target.value };
+              setQuery(obj);
+            }}
+            value={query.search}
+          />
           <select
             name="categories"
             value={query.cat}
@@ -93,29 +108,29 @@ const Header = ({ pageFunc }) => {
               );
             })}
           </select>
-          <input
-            type="text"
-            name="search"
-            onChange={(event) => {
-              const obj = { ...query, search: event.target.value };
-              setQuery(obj);
-            }}
-            value={query.search}
-          />
-          <button>Go !</button>
+          <button>Rechercher !</button>
         </form>
-        {user ? (
-          <div>
-            <div
-              onClick={() => {
-                setMenus(!menus);
-              }}
-            >
-              <h2>{user.username}</h2>
-              {user.avatar && <img src={user.avatar} alt="my avatar" />}
-            </div>
+      </div>{" "}
+      {user ? (
+        <div className="absolute-user">
+          <div
+            onClick={() => {
+              setMenus(!menus);
+            }}
+            className="user"
+          >
+            {user.avatar && (
+              <img
+                src={user.avatar.secure_url}
+                alt="my avatar"
+                className="avatar"
+              />
+            )}
+            <h2>{user.username}</h2>
+          </div>
+          <div className="relative">
             {menus && (
-              <div>
+              <div className="absolute">
                 <div
                   onClick={() => {
                     handleSubmitAccount("collections");
@@ -128,7 +143,7 @@ const Header = ({ pageFunc }) => {
                     handleSubmitAccount("Account");
                   }}
                 >
-                  gérer mon profil
+                  Mon profil
                 </div>
                 <div
                   onClick={() => {
@@ -140,16 +155,17 @@ const Header = ({ pageFunc }) => {
               </div>
             )}
           </div>
-        ) : (
-          <button
-            onClick={() => {
-              navigate("/login");
-            }}
-          >
-            Se connecter
-          </button>
-        )}
-      </div>
+        </div>
+      ) : (
+        <button
+          onClick={() => {
+            navigate("/login");
+          }}
+          className="absolute-user button"
+        >
+          Se connecter
+        </button>
+      )}
     </header>
   );
 };

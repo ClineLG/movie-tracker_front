@@ -1,0 +1,32 @@
+.collections {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.colall {
+  margin: 40px 0;
+}
+.col-section {
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.333);
+}
+.col-section h1 {
+  margin-bottom: 20px;
+  color: #ffffffa3;
+}
+.collections img {
+  height: 300px;
+}
+.collections p {
+  padding: 0 10px;
+  font-size: 15px;
+}
+.collections .MovieCard {
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 18%;
+}
+.collections .movies-container {
+  overflow: scroll;
+}

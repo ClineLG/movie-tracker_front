@@ -1,9 +1,8 @@
 import "./allMoviesComponent.css";
-import whatIsTheCategory from "../../utils/whatIsTheCategory";
 import { Link } from "react-router-dom";
 const AllMoviesComponent = ({ data }) => {
   return (
-    <div>
+    <div className="wrap">
       {data.results.map((movie) => {
         return (
           <Link
@@ -13,11 +12,6 @@ const AllMoviesComponent = ({ data }) => {
           >
             <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} />
             <h2>{movie.title}</h2>
-            <div>
-              {movie.genre_ids.map((category) => {
-                return <p key={category}>{whatIsTheCategory(category)}</p>;
-              })}
-            </div>
           </Link>
         );
       })}

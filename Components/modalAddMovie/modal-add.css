@@ -1,16 +1,61 @@
 .modal {
   height: 100vh;
   width: 100vw;
-  color: red;
-  background-color: rgba(127, 255, 212, 0.412);
+  background-color: rgba(255, 255, 255, 0.121);
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 3;
 }
 .modalContent {
-  background-color: white;
+  background-color: black;
   width: 40%;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.modalContent form {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+}
+.modalContent select {
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+.modalContent textarea {
+  margin-top: 20px;
+  width: 100%;
+  height: 200px;
+  resize: none;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px rgba(128, 128, 128, 0.3) solid;
+}
+select:hover {
+  cursor: pointer;
+}
+.modalContent label {
+  font-size: 20px;
+  color: white;
+}
+.modalContent .result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+.modalContent input {
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  width: 30%;
 }

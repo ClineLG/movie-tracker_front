@@ -8,7 +8,9 @@ body,
 * {
   font-family: "Fira Sans";
 }
-
+body {
+  background-color: rgb(0, 0, 0);
+}
 .container {
   width: 1200px;
   margin: 0 auto;
@@ -23,4 +25,28 @@ body,
   position: relative;
   height: 100vh;
   overflow: hidden;
+}
+button:hover,
+a:hover {
+  cursor: pointer;
+}
+button {
+  border: none;
+}
+a,
+p {
+  text-decoration: none;
+  color: white;
+}
+
+h1 {
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+}
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 20px;
 }

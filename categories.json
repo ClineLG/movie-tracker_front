@@ -3,79 +3,98 @@
     { "id": 0, "name": "Toutes les catégories" },
     {
       "id": 28,
-      "name": "Action"
+      "name": "Action",
+      "img": "https://image.tmdb.org/t/p/w500/oShNrYScpLBi4pyOjytPy9BerRr.jpg"
     },
     {
       "id": 12,
-      "name": "Aventure"
+      "name": "Aventure",
+      "img": "https://image.tmdb.org/t/p/w500/5OPg6M0yHr21Ovs1fni2H1xpKuF.jpg"
     },
     {
       "id": 16,
-      "name": "Animation"
+      "name": "Animation",
+      "img": "https://image.tmdb.org/t/p/w500/7QqLsDKe3myax9mfQf5EvJ2qk6u.jpg"
     },
     {
       "id": 35,
-      "name": "Comédie"
+      "name": "Comédie",
+      "img": "https://image.tmdb.org/t/p/w500/gFhf8NwvEKCbNIOQZxLqj1i5DMy.jpg"
     },
     {
       "id": 80,
-      "name": "Crime"
+      "name": "Crime",
+      "img": "https://image.tmdb.org/t/p/w500/9LfX3IBeByGdFkmkmNztKBr4nYv.jpg"
     },
     {
       "id": 99,
-      "name": "Documentaire"
+      "name": "Documentaire",
+      "img": "https://image.tmdb.org/t/p/w500/zYkbqQaCuIHBxqBDGgnQCwJ9jIG.jpg"
     },
     {
       "id": 18,
-      "name": "Drame"
+      "name": "Drame",
+      "img": "https://image.tmdb.org/t/p/w500/t30GjttOdb5At1sYy8b3TOwFgWV.jpg"
     },
     {
       "id": 10751,
-      "name": "Familial"
+      "name": "Familial",
+      "img": "https://image.tmdb.org/t/p/w500/zXl41G6QVSAHzNNKsDUG9TOPJin.jpg"
     },
     {
       "id": 14,
-      "name": "Fantastique"
+      "name": "Fantastique",
+      "img": "https://image.tmdb.org/t/p/w500/1jMFs9wIuVMNuTxGHJQ3oTBn9SY.jpg"
     },
     {
       "id": 36,
-      "name": "Histoire"
+      "name": "Histoire",
+      "img": "https://image.tmdb.org/t/p/w500/orN43xQQkoAmbUx1tYZl6HY7WKU.jpg"
     },
     {
       "id": 27,
-      "name": "Horreur"
+      "name": "Horreur",
+      "img": "https://image.tmdb.org/t/p/w500/gwCpaR7v1imLPBSl31X0OuYoysH.jpg"
     },
     {
       "id": 10402,
-      "name": "Musique"
+      "name": "Musique",
+      "img": "https://image.tmdb.org/t/p/w500/5KIj6aioW1UtUT1IV0qqW5iZbNH.jpg"
     },
     {
       "id": 9648,
-      "name": "Mystère"
+      "name": "Mystère",
+      "img": "https://image.tmdb.org/t/p/w500/uvd0fOK5dZsZDMICflMxotedsmC.jpg"
     },
     {
       "id": 10749,
-      "name": "Romance"
+      "name": "Romance",
+      "img": "https://image.tmdb.org/t/p/w500/vpsvHLkoeKUjceIMeNSqCp3xEyY.jpg"
     },
     {
       "id": 878,
-      "name": "Science-Fiction"
+      "name": "Science-Fiction",
+      "img": "https://image.tmdb.org/t/p/w500/qelTNHrBSYjPvwdzsDBPVsqnNzc.jpg"
     },
     {
       "id": 10770,
-      "name": "Téléfilm"
+      "name": "Téléfilm",
+      "img": "https://image.tmdb.org/t/p/w500/kIHgjAkuzvKBnmdstpBOo4AfZah.jpg"
     },
     {
       "id": 53,
-      "name": "Thriller"
+      "name": "Thriller",
+      "img": "https://image.tmdb.org/t/p/w500/zDyT3gIeae39UgL9P6jL5Zc3zyt.jpg"
     },
     {
       "id": 10752,
-      "name": "Guerre"
+      "name": "Guerre",
+      "img": "https://image.tmdb.org/t/p/w500/cShwwkz4gBBIRj8yFy8TP2tEWZ4.jpg"
     },
     {
       "id": 37,
-      "name": "Western"
+      "name": "Western",
+      "img": "https://image.tmdb.org/t/p/w500/qEr65B4yGlsmLQjcM0xjSUMfZS2.jpg"
     }
   ]
 }

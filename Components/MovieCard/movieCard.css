@@ -1,13 +1,30 @@
 .movies-container {
   display: flex;
   gap: 10px;
-  overflow: scroll;
+  overflow-x: scroll;
+}
+.movies-container::-webkit-scrollbar {
+  display: none;
 }
 .MovieCard {
   height: 100%;
-  /* display: flex;
-    flex-direction: column; */
+  border: 2px white solid;
+  display: flex;
+  flex-direction: column;
 }
 .MovieCard img {
-  height: 200px;
+  height: 230px;
+}
+.MovieCard h2 {
+  border-top: 2px solid white;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  /* background-color: rgba(131, 10, 10, 0.616); */
+}
+.MovieCard:hover {
+  background-color: rgba(93, 224, 78, 0.6);
+  cursor: pointer;
 }
