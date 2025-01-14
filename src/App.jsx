@@ -135,7 +135,7 @@ function App() {
             <Route
               path="/account"
               element={
-                <UpdateAccount user={user} login={login} logout={logout} />
+                <updateAccount user={user} login={login} logout={logout} />
               }
             />
           </Routes>
