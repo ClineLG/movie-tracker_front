@@ -5,7 +5,7 @@ import { MdOutlineEdit } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 
-const UpdateAccount = ({ user, login, logout }) => {
+const updateAccount = ({ user, login, logout }) => {
   const [edit, setEdit] = useState(false);
   const [userDetailsEdit, setUserDetailsEdit] = useState({
     username: "",
@@ -265,4 +265,4 @@ const UpdateAccount = ({ user, login, logout }) => {
   );
 };
 
-export default UpdateAccount;
+export default updateAccount;

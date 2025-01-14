@@ -11,7 +11,7 @@ import Signup from "../Pages/Signup/Sigup";
 import Login from "../Pages/Login/Login";
 import Collections from "../Pages/Collections/Collections";
 import MovieCollectionDetails from "../Pages/MovieCollectionDetails/MovieCollectionDetails";
-import UpdateAccount from "../Pages/updateAccount/UpdateAccount";
+import updateAccount from "../Pages/updateAccount/updateAccount";
 //components
 import Header from "../Components/Header/Header";
 import ModalConnection from "../Components/modalConnection/ModalConnection";
