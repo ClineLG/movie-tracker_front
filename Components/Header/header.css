@@ -1,18 +1,24 @@
-header {
+.topheader {
   /* background-color: gray; */
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
   gap: 2px;
+}
+header {
+  padding: 20px;
   border-bottom: 1px solid rgba(128, 128, 128, 0.385);
 }
-
 .logo-container {
   font-size: 30px;
   display: flex;
   color: white;
   text-decoration: none;
 }
-
+.hidefirst {
+  display: none;
+}
 header .container {
   padding: 30px 0;
   display: flex;
@@ -20,16 +26,16 @@ header .container {
 }
 
 header form {
-  margin-right: 40px;
-  flex: 1;
+  /* background-color: aqua; */
+  width: 40%;
+  margin: 20px 0;
   display: flex;
-  justify-content: flex-end;
 }
 header input {
   margin-left: 20px;
   margin-right: 20px;
-
-  width: 40%;
+  padding: 10px;
+  flex: 1;
   border: none;
   border-radius: 5px;
 }
@@ -38,7 +44,8 @@ header form button {
   border-radius: 5px;
   background-color: rgb(98, 213, 85);
   color: white;
-  padding: 0 10px;
+  padding: 10px;
+  margin-left: auto;
 }
 
 header form button:hover {
@@ -59,7 +66,7 @@ select:focus {
 .absolute-user {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  /* position: absolute; */
   right: 50px;
 }
 
@@ -69,8 +76,8 @@ header .user {
   justify-content: flex-start;
   background-color: rgb(98, 213, 85);
   color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding-right: 5px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -87,9 +94,10 @@ header .user {
   background-color: rgb(93, 224, 78);
 }
 .avatar {
-  border: solid 1px rgb(29, 233, 7);
-  height: 30px;
-  width: 30px;
+  border: solid 2px rgb(255, 255, 255);
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
   border-radius: 10px;
 }
 
@@ -120,4 +128,61 @@ header .absolute div {
 header .absolute div:hover {
   cursor: pointer;
   background-color: rgb(98, 213, 85);
+}
+.user.bis h2 {
+  text-align: center;
+  width: 100%;
+  padding: 6px 0;
+}
+@media (max-width: 1250px) {
+  .hidesec {
+    display: none;
+  }
+  .hidefirst {
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    gap: 20px;
+    /* justify-content: flex-start;
+    align-items: flex-start; */
+  }
+  .hidefirst button {
+    /* margin: 0; */
+    width: 50%;
+    margin: 0 auto;
+  }
+  .hidefirst div {
+    width: 100%;
+    display: flex;
+  }
+  .hidefirst input {
+    margin-left: 0;
+  }
+}
+@media (max-width: 920px) {
+  .hidefirst {
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .logo-container {
+    font-size: 20px;
+  }
+  .avatar {
+    height: 40px;
+    width: 40px;
+  }
+  .hidefirst div {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .hidefirst select {
+    padding: 5px 10px;
+  }
+  header .user {
+    min-width: 100px;
+  }
+  header .absolute div {
+    font-size: 13px;
+  }
 }

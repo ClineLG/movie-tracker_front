@@ -30,3 +30,43 @@
 .collections .movies-container {
   overflow: scroll;
 }
+.center {
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .movies-container .MovieCard {
+    width: 20%;
+  }
+}
+@media (max-width: 1020px) {
+  .movies-container .MovieCard {
+    width: 25%;
+  }
+}
+@media (max-width: 850px) {
+  .movies-container .MovieCard {
+    width: 30%;
+  }
+}
+@media (max-width: 680px) {
+  .movies-container .MovieCard {
+    width: 35%;
+  }
+}
+
+@media (max-width: 550px) {
+  .movies-container .MovieCard {
+    width: 40%;
+  }
+}
+@media (max-width: 450px) {
+  .movies-container .MovieCard {
+    width: 50%;
+  }
+}
+@media (max-width: 360px) {
+  .movies-container .MovieCard {
+    width: 60%;
+  }
+}

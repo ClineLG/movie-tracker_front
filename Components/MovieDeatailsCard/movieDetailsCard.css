@@ -10,8 +10,10 @@
   padding: 20px;
   border-radius: 15px;
 }
-.genreD {
+.genre {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
   padding: 20px 0;
 }
@@ -58,6 +60,27 @@
 .tagline {
   font-style: italic;
 }
+.carddetails h1 {
+  text-align: center;
+}
 .carddetails img {
   border: 1px white solid;
+  object-fit: contain;
+  width: 90%;
+}
+
+@media (max-width: 900px) {
+  .carddetails {
+    width: 90%;
+  }
+}
+@media (max-width: 700px) {
+  .endLine {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .carddetails .genrep {
+    padding: 10px;
+    font-size: 15px;
+  }
 }

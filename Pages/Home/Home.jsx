@@ -22,7 +22,7 @@ const Home = ({ pageFunc }) => {
         <img src={img} />
         <div>
           <p>
-            Retrouvez vos films facilement, gérez vos collections, ne perdez
+            Retrouvez vos films facilement, gérez vos collections et ne perdez
             plus jamais de vue ce que vous vouliez regarder.
           </p>
           <Link to="/signup" state={{ from: "/" }} className="button">
@@ -34,11 +34,12 @@ const Home = ({ pageFunc }) => {
         <div className="genre">
           <h1>Envie d'un genre en particulier?</h1>
 
-          <div>
+          <div className="genres-container">
             {category.genres.map((cat) => {
               return (
                 cat.id !== 0 && (
                   <div
+                    key={cat.id}
                     onClick={() => {
                       pageFunc(1);
 

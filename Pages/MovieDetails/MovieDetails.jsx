@@ -28,7 +28,7 @@ const MovieDetails = ({ setModalAddVisible, setModalConnectionVisible }) => {
   }, []);
 
   return isLoading ? (
-    <div className="loading">Loading</div>
+    <div className="loader"></div>
   ) : (
     <section className="details">
       <div className="container">

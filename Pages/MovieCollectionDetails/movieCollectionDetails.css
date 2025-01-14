@@ -67,3 +67,45 @@ textarea {
 .edit-buttons:hover {
   cursor: pointer;
 }
+.tagline {
+  text-align: center;
+}
+@media (max-width: 1200px) {
+  .my-movie {
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 610px) {
+  .edit-buttons {
+    gap: 10px;
+  }
+  .ed {
+    font-size: 20px;
+  }
+}
+@media (max-width: 800px) {
+  .my-movie input {
+    width: 35%;
+  }
+}
+@media (max-width: 500px) {
+  .my-movie .top {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .edit-buttons {
+    align-self: flex-end;
+  }
+  .my-movie h1 {
+    font-size: 16px;
+  }
+  .edit {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .my-movie input {
+    width: 60%;
+  }
+}

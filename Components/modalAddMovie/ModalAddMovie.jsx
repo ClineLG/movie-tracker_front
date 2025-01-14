@@ -11,7 +11,7 @@ const ModalAddMovie = ({
 }) => {
   console.log("dataMovie", dataMovie);
 
-  const [asset, setAsset] = useState("A regarder plus tard");
+  const [asset, setAsset] = useState("");
   const [comment, setComment] = useState("");
   const [AddIsLoading, setAddIsLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -43,10 +43,16 @@ const ModalAddMovie = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      let assettoSend = "";
+      if (!asset) {
+        assettoSend = assetCol[0];
+      } else {
+        assettoSend = asset;
+      }
       setIsLoading(true);
       const response = await axios.put(
         `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/addMovie`,
-        { movie: dataMovie, comment: comment, asset: asset },
+        { movie: dataMovie, comment: comment, asset: assettoSend },
         {
           headers: {
             Authorization: "Bearer " + user.token,
@@ -62,7 +68,7 @@ const ModalAddMovie = ({
     }
   };
   return isLoading ? (
-    <div className="loading">Loading</div>
+    <div className="loader"></div>
   ) : (
     <section className="modal">
       <div className="modalContent">
@@ -87,7 +93,7 @@ const ModalAddMovie = ({
               handleSubmit(event);
             }}
           >
-            <div>
+            <div className="modal-collection">
               <label htmlFor="asset">Ajouter à une collection : </label>
               <select
                 name="asset"
@@ -97,6 +103,7 @@ const ModalAddMovie = ({
                     setAddCol(true);
                     setAsset("");
                   } else {
+                    console.log("coucou", asset, event.target.value);
                     setAsset(event.target.value);
                   }
                 }}
@@ -109,7 +116,7 @@ const ModalAddMovie = ({
                   );
                 })}
                 <option value={"ajouter une collection"} key={"+"}>
-                  Ajouter une Collection
+                  nouvelle collection
                 </option>
               </select>
               {addCol && (
@@ -142,6 +149,7 @@ const ModalAddMovie = ({
               />
             </div>
             {errorMessage && <p>{errorMessage}</p>}
+            {AddIsLoading && <div className="loader"></div>}
             <button
               disabled={AddIsLoading ? true : false}
               className="buttonall"

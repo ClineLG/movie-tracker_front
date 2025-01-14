@@ -1,3 +1,8 @@
 .details {
   padding-top: 40px;
 }
+@media (max-width: 1200px) {
+  .details {
+    padding-right: 20px;
+  }
+}

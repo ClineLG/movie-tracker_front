@@ -41,11 +41,10 @@ const MovieDetailsCard = ({ data }) => {
   return (
     <div className="carddetails">
       <h1> {title}</h1>
-
-      {original_title !== title && <p>{original_title}</p>}
+      {original_title !== title && <p className="center">{original_title}</p>}
       {tagline && <p className="tagline">{tagline}</p>}
       <img src={"https://image.tmdb.org/t/p/w500" + poster_path} alt={title} />
-      <div className="genreD">
+      <div className="genre">
         {genres.map((genre) => {
           return (
             <div
@@ -80,8 +79,13 @@ const MovieDetailsCard = ({ data }) => {
           );
         })}
       </div>
-      <span className="left">Synopsis :</span>
-      <p>{overview}</p>
+      {overview && (
+        <>
+          <span className="left">Synopsis :</span>
+          <p>{overview}</p>
+        </>
+      )}
+
       <div className="left endLine">
         {runtime !== 0 && (
           <p>

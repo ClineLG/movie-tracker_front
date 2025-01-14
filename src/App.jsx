@@ -16,6 +16,7 @@ import UpdateAccount from "../Pages/updateAccount/updateAccount";
 import Header from "../Components/Header/Header";
 import ModalConnection from "../Components/modalConnection/modalConnection";
 import ModalAddMovie from "../Components/modalAddMovie/ModalAddMovie";
+import Footer from "../Components/Footer/Footer";
 //context
 import UserContext from "../Context/UserContext";
 import { useState, useEffect } from "react";
@@ -66,7 +67,9 @@ function App() {
   }, []);
 
   return (
-    <div className={modalAddVisible || modalConnectionVisible ? "app" : ""}>
+    <div
+      className={modalAddVisible || modalConnectionVisible ? "app on" : "app"}
+    >
       <Router>
         <UserContext.Provider
           value={{ user, logout, login, setDataMovie, pageFunc }}
@@ -151,6 +154,10 @@ function App() {
               setModalConnectionVisible={setModalConnectionVisible}
             />
           )}
+          <Footer
+            modalConnectionVisible={modalConnectionVisible}
+            modalAddVisible={modalAddVisible}
+          />
         </UserContext.Provider>
       </Router>
     </div>

@@ -59,3 +59,36 @@ select:hover {
   border: none;
   width: 30%;
 }
+
+@media (max-width: 1200px) {
+  .modal {
+    padding-right: 20px;
+  }
+  .modalContent {
+    width: 70%;
+  }
+  .modalContent select {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 580px) {
+  .modal-collection {
+    display: flex;
+    flex-direction: column;
+  }
+  .modalContent input {
+    margin-top: 20px;
+    margin-left: 0%;
+    width: 100%;
+  }
+  .result {
+    font-size: 14px;
+    text-align: center;
+  }
+  .modalContent {
+    width: 100%;
+  }
+  .modalContent .label {
+    font-size: 15px;
+  }
+}

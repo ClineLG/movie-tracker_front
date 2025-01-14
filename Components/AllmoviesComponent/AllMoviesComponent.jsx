@@ -1,5 +1,6 @@
 import "./allMoviesComponent.css";
 import { Link } from "react-router-dom";
+
 const AllMoviesComponent = ({ data }) => {
   return (
     <div className="wrap">

@@ -19,3 +19,27 @@
   padding: 0 10px;
   font-size: 15px;
 }
+@media (max-width: 1250px) {
+  .wrap {
+    width: 100%;
+    justify-content: center;
+  }
+  .wrap .MovieCard {
+    width: 20%;
+  }
+}
+@media (max-width: 920px) {
+  .wrap .MovieCard {
+    width: 30%;
+  }
+}
+@media (max-width: 600px) {
+  .wrap .MovieCard {
+    width: 45%;
+  }
+}
+@media (max-width: 440px) {
+  .wrap .MovieCard {
+    width: 85%;
+  }
+}

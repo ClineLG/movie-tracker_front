@@ -3,6 +3,8 @@ import "./update-account.css";
 import { useState } from "react";
 import { MdOutlineEdit } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { IoArrowBack } from "react-icons/io5";
+
 const UpdateAccount = ({ user, login, logout }) => {
   const [edit, setEdit] = useState(false);
   const [userDetailsEdit, setUserDetailsEdit] = useState({
@@ -108,111 +110,158 @@ const UpdateAccount = ({ user, login, logout }) => {
   };
 
   return (
-    <div className="container">
-      <form
-        onSubmit={(event) => {
-          handleSubmit(event);
-        }}
-      >
+    <section className="register updateAccount">
+      <div className="container">
         <h1>Mon compte</h1>
-        {!edit ? (
-          <>
-            <MdOutlineEdit
-              onClick={() => {
-                setEdit(true);
-              }}
-            />
-            <p> pseudo : {user.username}</p>
-            <p>adresse e-mail : {user.email}</p>
-            {user.avatar && <img src={user.avatar} alt="avatar" />}
-          </>
-        ) : (
-          <>
-            <span
-              onClick={() => {
-                setEdit(false);
-              }}
-            >
-              ←
-            </span>
-            <input
-              type="text"
-              name="username"
-              placeholder={user.username}
-              onChange={(event) => {
-                handleChange(event, "username");
-              }}
-              value={userDetailsEdit.username}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder={user.email}
-              onChange={(event) => {
-                handleChange(event, "email");
-              }}
-              value={userDetailsEdit.email}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="*****"
-              onChange={(event) => {
-                handleChange(event, "password");
-              }}
-              value={userDetailsEdit.password}
-            />
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="*****"
-              onChange={(event) => {
-                handleChange(event, "confirmPassword");
-              }}
-              value={userDetailsEdit.confirmPassword}
-            />
-            <label htmlFor="uploadAvatar" className="avatar">
-              <p>Ajouter un nouvel avatar</p>
-              {user.avatar && !imageUpload ? (
-                <img
-                  src={user.avatar}
-                  alt="picture upload preview"
-                  className="avatarPreview"
+        <form
+          onSubmit={(event) => {
+            handleSubmit(event);
+          }}
+        >
+          {!edit ? (
+            <>
+              <MdOutlineEdit
+                onClick={() => {
+                  setEdit(true);
+                }}
+                className="editPress"
+              />
+
+              <div className="label-input">
+                <label>Pseudo :</label> <p>{user.username}</p>
+              </div>
+              <div className="label-input">
+                <label>E-mail :</label> <p>{user.email}</p>
+              </div>
+
+              {user.avatar && (
+                <div className="label-input">
+                  <label>Avatar : </label>{" "}
+                  <img
+                    className="avatarPreview"
+                    src={user.avatar.secure_url}
+                    alt="avatar"
+                  />
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <IoArrowBack
+                className="back"
+                onClick={() => {
+                  const obj = {
+                    username: "",
+                    email: "",
+                    password: "",
+                    confirmPassword: "",
+                    avatar: null,
+                  };
+                  setImageUpload(null);
+                  setUserDetailsEdit(obj);
+                  setEdit(false);
+                }}
+              />
+
+              <div className="label-input">
+                <label htmlFor="username">Pseudo :</label>
+                <input
+                  id="username"
+                  type="text"
+                  name="username"
+                  placeholder={user.username}
+                  onChange={(event) => {
+                    handleChange(event, "username");
+                  }}
+                  value={userDetailsEdit.username}
                 />
-              ) : (
-                (user.avatar && imageUpload) ||
-                (!user.avatar && imageUpload && (
+              </div>
+              <div className="label-input">
+                <label htmlFor="email">E-mail :</label>{" "}
+                <input
+                  type="email"
+                  name="email"
+                  placeholder={user.email}
+                  onChange={(event) => {
+                    handleChange(event, "email");
+                  }}
+                  value={userDetailsEdit.email}
+                />
+              </div>
+              <div className="label-input">
+                <label htmlFor="password">Mot de passe :</label>{" "}
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="*****"
+                  onChange={(event) => {
+                    handleChange(event, "password");
+                  }}
+                  value={userDetailsEdit.password}
+                />
+              </div>
+              <div className="label-input">
+                <label htmlFor="confirmPassword">
+                  Confirmation du mot de passe :
+                </label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="*****"
+                  onChange={(event) => {
+                    handleChange(event, "confirmPassword");
+                  }}
+                  value={userDetailsEdit.confirmPassword}
+                />{" "}
+              </div>
+
+              <label htmlFor="uploadAvatar" className="avatar-L">
+                <p className="button">Ajouter un nouvel avatar</p>
+                {user.avatar && !imageUpload ? (
+                  <img
+                    src={user.avatar.secure_url}
+                    alt="picture upload preview"
+                    className="avatarPreview old"
+                  />
+                ) : (user.avatar && imageUpload) ||
+                  (!user.avatar && imageUpload) ? (
                   <img
                     src={imageUpload}
                     alt="picture upload preview"
                     className="avatarPreview"
                   />
-                ))
-              )}
-            </label>
-            <input
-              className="inputAvatar"
-              id="uploadAvatar"
-              type="file"
-              name="avatar"
-              onChange={(event) => {
-                handleNewFile(event);
-              }}
-            />
-            {errorMessage && <p>{errorMessage}</p>}
-            <button disabled={isLoading ? true : false}>Editer</button>
-          </>
-        )}
-      </form>
-      <button
-        onClick={() => {
-          handleDelete();
-        }}
-        disabled={isLoading ? true : false}
-      >
-        Supprimer mon compte
-      </button>
-    </div>
+                ) : (
+                  ""
+                )}
+              </label>
+              <input
+                className="inputAvatar"
+                id="uploadAvatar"
+                type="file"
+                name="avatar"
+                onChange={(event) => {
+                  handleNewFile(event);
+                }}
+              />
+              {errorMessage && <p className="alert">{errorMessage}</p>}
+              {isLoading && <div className="loader"></div>}
+              <button className="buttonall" disabled={isLoading ? true : false}>
+                Editer
+              </button>
+            </>
+          )}
+        </form>{" "}
+        <button
+          onClick={() => {
+            handleDelete();
+          }}
+          disabled={isLoading ? true : false}
+          className="buttonD"
+        >
+          Supprimer mon compte
+        </button>
+      </div>
+    </section>
   );
 };
 

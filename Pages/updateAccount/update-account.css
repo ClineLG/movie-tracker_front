@@ -1,0 +1,51 @@
+.editPress {
+  color: white;
+  font-size: 30px;
+  align-self: flex-end;
+}
+.editPress:hover {
+  cursor: pointer;
+  color: #5ee04e;
+}
+
+.updateAccount .label-input {
+  align-items: center;
+}
+.updateAccount .label-input label {
+  align-self: flex-start;
+  font-weight: 600;
+}
+
+.updateAccount .buttonD {
+  padding: 5px 10px;
+  border-radius: 25px;
+  background-color: brown;
+  color: white;
+  font-size: 18px;
+}
+.updateAccount .buttonD:hover {
+  background-color: red;
+  cursor: pointer;
+}
+
+.updateAccount .avatarPreview {
+  border: solid 2px white;
+}
+.old {
+  opacity: 0.7;
+}
+.updateAccount .back {
+  color: white;
+  align-self: flex-start;
+  font-size: 25px;
+}
+.updateAccount .back:hover {
+  cursor: pointer;
+  color: #5ee04e;
+}
+.updateAccount .container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+}
