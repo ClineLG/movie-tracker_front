@@ -70,3 +70,8 @@
     width: 60%;
   }
 }
+@media (max-width: 320px) {
+  .movies-container .MovieCard {
+    width: 70%;
+  }
+}
