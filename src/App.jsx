@@ -8,10 +8,10 @@ import Home from "../Pages/Home/Home";
 import MovieDetails from "../Pages/MovieDetails/MovieDetails";
 import Allmovies from "../Pages/AllMovies/AllMovies";
 import Signup from "../Pages/Signup/Sigup";
-import Login from "../Pages/Login/login";
+import Login from "../Pages/Login/Login";
 import Collections from "../Pages/Collections/Collections";
 import MovieCollectionDetails from "../Pages/MovieCollectionDetails/MovieCollectionDetails";
-import UpdateAccount from "../Pages/updateAccount/updateAccount";
+import UpdateAccount from "../Pages/updateAccount/UpdateAccount";
 //components
 import Header from "../Components/Header/Header";
 import ModalConnection from "../Components/modalConnection/ModalConnection";
