@@ -14,7 +14,7 @@ import MovieCollectionDetails from "../Pages/MovieCollectionDetails/MovieCollect
 import UpdateAccount from "../Pages/updateAccount/updateAccount";
 //components
 import Header from "../Components/Header/Header";
-import ModalConnection from "../Components/modalConnection/modalConnection";
+import ModalConnection from "../Components/modalConnection/ModalConnection";
 import ModalAddMovie from "../Components/modalAddMovie/ModalAddMovie";
 import Footer from "../Components/Footer/Footer";
 //context
