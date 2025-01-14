@@ -13,7 +13,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 
-const Home = ({ pageFunc }) => {
+const Home = ({ pageFunc, user }) => {
   const navigate = useNavigate();
 
   return (
@@ -25,9 +25,15 @@ const Home = ({ pageFunc }) => {
             Retrouvez vos films facilement, gérez vos collections et ne perdez
             plus jamais de vue ce que vous vouliez regarder.
           </p>
-          <Link to="/signup" state={{ from: "/" }} className="button">
-            Créer mon compte
-          </Link>
+          {user ? (
+            <Link to="/myMovies" className="button">
+              Mes collections
+            </Link>
+          ) : (
+            <Link to="/signup" state={{ from: "/" }} className="button">
+              Créer mon compte
+            </Link>
+          )}
         </div>
       </div>
       <div className="container">

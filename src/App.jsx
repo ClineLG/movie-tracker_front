@@ -11,7 +11,7 @@ import Signup from "../Pages/Signup/Sigup";
 import Login from "../Pages/Login/Login";
 import Collections from "../Pages/Collections/Collections";
 import MovieCollectionDetails from "../Pages/MovieCollectionDetails/MovieCollectionDetails";
-import updateAccount from "../Pages/updateAccount/updateAccount";
+import UpdateAccount from "../Pages/updateAccount/updateAccount";
 //components
 import Header from "../Components/Header/Header";
 import ModalConnection from "../Components/modalConnection/ModalConnection";
@@ -76,7 +76,10 @@ function App() {
         >
           <Header page={page} pageFunc={pageFunc} />
           <Routes>
-            <Route path="/" element={<Home pageFunc={pageFunc} />} />
+            <Route
+              path="/"
+              element={<Home pageFunc={pageFunc} user={user} />}
+            />
             <Route
               path="/details/:id"
               element={
@@ -135,7 +138,7 @@ function App() {
             <Route
               path="/account"
               element={
-                <updateAccount user={user} login={login} logout={logout} />
+                <UpdateAccount user={user} login={login} logout={logout} />
               }
             />
           </Routes>
