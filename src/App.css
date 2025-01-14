@@ -23,6 +23,12 @@ body {
 
 .app {
   position: relative;
+
+  padding-bottom: 60px;
+  min-height: 100vh;
+  position: relative;
+}
+.app.on {
   height: 100vh;
   overflow: hidden;
 }
@@ -49,4 +55,43 @@ h2 {
   font-weight: 600;
   text-align: center;
   line-height: 20px;
+}
+
+.loader {
+  margin: 40px auto;
+  --d: 22px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  color: #5ee04e;
+  box-shadow: calc(1 * var(--d)) calc(0 * var(--d)) 0 0,
+    calc(0.707 * var(--d)) calc(0.707 * var(--d)) 0 1px,
+    calc(0 * var(--d)) calc(1 * var(--d)) 0 2px,
+    calc(-0.707 * var(--d)) calc(0.707 * var(--d)) 0 3px,
+    calc(-1 * var(--d)) calc(0 * var(--d)) 0 4px,
+    calc(-0.707 * var(--d)) calc(-0.707 * var(--d)) 0 5px,
+    calc(0 * var(--d)) calc(-1 * var(--d)) 0 6px;
+  animation: l27 1s infinite steps(8);
+}
+@keyframes l27 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+@media (max-width: 1220px) {
+  .container {
+    width: 100%;
+  }
+  section {
+    padding-left: 20px;
+  }
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 20px;
+  }
+  h2 {
+    font-size: 15px;
+  }
 }

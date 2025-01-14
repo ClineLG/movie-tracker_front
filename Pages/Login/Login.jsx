@@ -73,29 +73,40 @@ const Login = ({ setModalConnectionVisible, modalConnectionVisible }) => {
   };
 
   return (
-    <section>
+    <section className="register">
       <div className="container">
         <form onSubmit={(event) => handleSubmit(event)}>
-          <input
-            type="email"
-            name="email"
-            placeholder="e-mail"
-            onChange={(event) => {
-              handleChange(event, "email");
-            }}
-            value={userDetails.email}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="*****"
-            onChange={(event) => {
-              handleChange(event, "password");
-            }}
-            value={userDetails.password}
-          />
-          {errorMessage && <p>{errorMessage}</p>}
-          <button disabled={isLoading ? true : false}>Se connecter</button>
+          <h1>Se connecter</h1>
+          <div className="label-input">
+            <label htmlFor="email">E-mail : </label>{" "}
+            <input
+              type="email"
+              name="email"
+              placeholder="e-mail"
+              onChange={(event) => {
+                handleChange(event, "email");
+              }}
+              value={userDetails.email}
+            />
+          </div>
+          <div className="label-input">
+            <label htmlFor="password">Mot de passe :</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="*****"
+              onChange={(event) => {
+                handleChange(event, "password");
+              }}
+              value={userDetails.password}
+            />
+          </div>
+
+          {errorMessage && <p className="alert">{errorMessage}</p>}
+          {isLoading && <div className="loader"></div>}
+          <button className="buttonall" disabled={isLoading ? true : false}>
+            Se connecter
+          </button>
           <Link to="/signup" state={{ from: "/" }}>
             Pas de compte ? s'inscrire !
           </Link>

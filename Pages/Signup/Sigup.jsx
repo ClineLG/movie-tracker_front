@@ -89,47 +89,67 @@ const Signup = ({ setModalConnectionVisible, modalConnectionVisible }) => {
   };
 
   return (
-    <section>
+    <section className="register">
       <div className="container">
         <form onSubmit={(event) => handleSubmit(event)}>
-          <input
-            type="text"
-            name="username"
-            placeholder="Pseudo"
-            onChange={(event) => {
-              handleChange(event, "username");
-            }}
-            value={userDetails.username}
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="e-mail"
-            onChange={(event) => {
-              handleChange(event, "email");
-            }}
-            value={userDetails.email}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="*****"
-            onChange={(event) => {
-              handleChange(event, "password");
-            }}
-            value={userDetails.password}
-          />
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="*****"
-            onChange={(event) => {
-              handleChange(event, "confirmPassword");
-            }}
-            value={userDetails.confirmPassword}
-          />
-          <label htmlFor="uploadAvatar" className="avatar">
-            <p>Ajouter un avatar</p>
+          <h1>S'inscrire</h1>
+          <div className="label-input">
+            <label htmlFor="username">Pseudo : </label>
+            <input
+              id="username"
+              type="text"
+              name="username"
+              placeholder="Pseudo"
+              onChange={(event) => {
+                handleChange(event, "username");
+              }}
+              value={userDetails.username}
+            />
+          </div>
+
+          <div className="label-input">
+            <label htmlFor="email">E-mail : </label>{" "}
+            <input
+              type="email"
+              name="email"
+              placeholder="e-mail"
+              onChange={(event) => {
+                handleChange(event, "email");
+              }}
+              value={userDetails.email}
+            />
+          </div>
+          <div className="label-input">
+            <label htmlFor="password">Mot de passe : </label>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="*****"
+              onChange={(event) => {
+                handleChange(event, "password");
+              }}
+              value={userDetails.password}
+            />
+          </div>
+          <div className="label-input">
+            <label htmlFor="confirmPassword">
+              Confirmation du mot de passe :
+            </label>
+            <input
+              id="confirmPassword"
+              type="password"
+              name="confirmPassword"
+              placeholder="*****"
+              onChange={(event) => {
+                handleChange(event, "confirmPassword");
+              }}
+              value={userDetails.confirmPassword}
+            />
+          </div>
+
+          <label htmlFor="uploadAvatar" className="avatar-L">
+            <p className="button">Ajouter un avatar</p>
             {imageUpload && (
               <img
                 src={imageUpload}
@@ -147,8 +167,11 @@ const Signup = ({ setModalConnectionVisible, modalConnectionVisible }) => {
               handleNewFile(event);
             }}
           />
-          {errorMessage && <p>{errorMessage}</p>}
-          <button disabled={isLoading ? true : false}>S'enregistrer</button>
+          {errorMessage && <p className="alert">{errorMessage}</p>}
+          {isLoading && <div className="loader"></div>}
+          <button className="buttonall" disabled={isLoading ? true : false}>
+            S'enregistrer
+          </button>
           <Link to="/login">Déjà inscrit ? se connecter !</Link>
         </form>
       </div>

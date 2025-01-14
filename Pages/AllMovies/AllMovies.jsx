@@ -55,7 +55,7 @@ const Allmovies = ({ page, pageFunc }) => {
   };
 
   return isLoading ? (
-    <div className="loading">Loading</div>
+    <div className="loader"></div>
   ) : (
     <section className="allmovies">
       <div className="container">

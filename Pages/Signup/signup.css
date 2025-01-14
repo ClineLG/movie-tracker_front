@@ -1,0 +1,79 @@
+.register {
+  margin: 40px 0;
+}
+.register form {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(159, 155, 155, 0.22);
+  padding: 30px;
+  border-radius: 15px;
+  align-items: center;
+  gap: 20px;
+  width: 40%;
+  margin: 0 auto;
+}
+.register form input {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+.inputAvatar {
+  display: none;
+}
+.avatarPreview {
+  border: none;
+  border-radius: 5px;
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+  margin: 20px;
+}
+.avatar-L {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register .buttonall {
+  font-weight: 500;
+  font-size: 20px;
+  width: 60%;
+}
+
+.label-input {
+  font-weight: 400;
+  color: white;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.register a {
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.alert {
+  color: brown;
+  font-weight: 600;
+}
+@media (max-width: 1200px) {
+  .register form {
+    width: 60%;
+  }
+  .register {
+    padding-right: 20px;
+  }
+}
+@media (max-width: 560px) {
+  .register form {
+    width: 90%;
+    padding: 20px 10px;
+  }
+  .register form .buttonall {
+    font-size: 15px;
+    width: fit-content;
+  }
+}

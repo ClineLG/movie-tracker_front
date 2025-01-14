@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import "./collections.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Collections = ({ modalAddVisible, setModalAddVisible, user, add }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [collections, setCollections] = useState(null);
   const [message, setMassage] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     modalAddVisible && setModalAddVisible(false);
+    if (!user) {
+      navigate("/");
+    }
     const fetchData = async () => {
       try {
         const response = await axios.get(
@@ -35,15 +38,13 @@ const Collections = ({ modalAddVisible, setModalAddVisible, user, add }) => {
     fetchData();
   }, [add, user]);
 
-  return !user ? (
-    <div className="loading">Unauthorized</div>
-  ) : isLoading ? (
-    <div className="loading">Loading</div>
+  return isLoading ? (
+    <div className="loader"></div>
   ) : (
     <section className="colall">
       <div className="container">
         {message ? (
-          <p>{message}</p>
+          <p className="center">{message}</p>
         ) : (
           <div className="collections">
             {collections.results.map((asset, index) => {

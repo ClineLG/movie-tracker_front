@@ -16,3 +16,8 @@
   font-weight: 800;
   cursor: pointer;
 }
+@media (max-width: 1200px) {
+  .allmovies {
+    padding-right: 20px;
+  }
+}

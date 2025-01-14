@@ -11,7 +11,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [editLoading, setEditLoading] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [userEdit, setUserEdit] = useState(null);
+  const [userEdit, setUserEdit] = useState({ asset: "", comment: "" });
   const [asset, setAsset] = useState(null);
   const [addCol, setAddCol] = useState(false);
   const { id } = useParams();
@@ -95,7 +95,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
   return !user ? (
     <div className="loading">Unauthorized</div>
   ) : isLoading ? (
-    <div className="loading">Loading</div>
+    <div className="loader"></div>
   ) : (
     <section>
       <div className="container my-movie">
@@ -111,7 +111,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
                 onClick={() => {
                   setEdit(!edit);
                 }}
-              />{" "}
+              />
               <FaTrashAlt
                 className="ed"
                 onClick={() => {
@@ -122,32 +122,35 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
           </div>
           {edit && (
             <div className="edit">
-              <label htmlFor="asset">Déplacer vers : </label>
-              <select
-                name="asset"
-                value={!addCol ? userEdit.asset : "ajouter une collection"}
-                onChange={(event) => {
-                  if (event.target.value === "ajouter une collection") {
-                    setAddCol(true);
-                    const obj = { ...userEdit, asset: "" };
-                    setUserEdit(obj);
-                  } else {
-                    const obj = { ...userEdit, asset: event.target.value };
-                    setUserEdit(obj);
-                  }
-                }}
-              >
-                {asset.map((asset, index) => {
-                  return (
-                    <option value={asset} key={index}>
-                      {asset}
-                    </option>
-                  );
-                })}
-                <option value={"ajouter une collection"} key={"+"}>
-                  Ajouter une Collection
-                </option>
-              </select>
+              <div>
+                <label htmlFor="asset">Déplacer vers : </label>
+                <select
+                  name="asset"
+                  value={!addCol ? userEdit.asset : "ajouter une collection"}
+                  onChange={(event) => {
+                    if (event.target.value === "ajouter une collection") {
+                      setAddCol(true);
+                      const obj = { ...userEdit, asset: "" };
+                      setUserEdit(obj);
+                    } else {
+                      const obj = { ...userEdit, asset: event.target.value };
+                      setUserEdit(obj);
+                    }
+                  }}
+                >
+                  {asset.map((asset, index) => {
+                    return (
+                      <option value={asset} key={index}>
+                        {asset}
+                      </option>
+                    );
+                  })}
+                  <option value={"ajouter une collection"} key={"+"}>
+                    Nouvelle collection
+                  </option>
+                </select>
+              </div>
+
               {addCol && (
                 <input
                   type="text"
@@ -166,13 +169,13 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
           <div className="carddetails">
             <h1> {data.result.movie.title}</h1>
             {data.result.movie.original_title !== data.result.movie.title && (
-              <p>{data.result.movie.original_title}</p>
+              <p className="center">{data.result.movie.original_title}</p>
             )}
             {data.result.movie.tagline && (
               <p className="tagline">{data.result.movie.tagline}</p>
             )}
             <img src={data.result.movie.poster} alt={data.result.movie.title} />
-            <div className="genreD">
+            <div className="genre">
               {data.result.movie.genres.map((genre) => {
                 return (
                   <div
@@ -206,19 +209,22 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
                 );
               })}
             </div>
-            <span className="left">Synopsis :</span>
-
-            <p>{data.result.movie.overview}</p>
+            {data.result.movie.overview && (
+              <>
+                <span className="left">Synopsis :</span>
+                <p>{data.result.movie.overview}</p>
+              </>
+            )}
 
             <div className="left endLine">
-              {data.result.movie.runtime !== 0 && (
+              {data.result.movie.runtime !== "0" && (
                 <p>durée : {data.result.movie.runtime}min</p>
               )}
 
-              {data.result.movie.budgete !== 0 && (
+              {data.result.movie.budget !== "0" && (
                 <p>budget : {data.result.movie.budget}＄</p>
               )}
-              {data.result.movie.revenue !== 0 && (
+              {data.result.movie.revenue !== "0" && (
                 <p>recette : {data.result.movie.revenue} ＄</p>
               )}
             </div>
@@ -237,10 +243,10 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
                     placeholder="Ajouter un commentaire"
                     value={userEdit.comment}
                     onChange={(e) => {
-                      const obj = { ...edit, comment: e.target.value };
+                      const obj = { ...userEdit, comment: e.target.value };
                       setUserEdit(obj);
                     }}
-                  />{" "}
+                  />
                 </div>
               )
             ) : (
@@ -253,7 +259,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
                     placeholder="Ajouter un commentaire"
                     value={userEdit.comment}
                     onChange={(e) => {
-                      const obj = { ...edit, comment: e.target.value };
+                      const obj = { ...userEdit, comment: e.target.value };
                       setUserEdit(obj);
                     }}
                   />

@@ -24,7 +24,7 @@ const MovieCard = ({ content }) => {
     fetchdata();
   }, []);
   return isLoading ? (
-    <div className="loading">Loading</div>
+    <div className="loader"></div>
   ) : (
     <div className="movies-container">
       {data.map((movie, index) => {
