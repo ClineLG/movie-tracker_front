@@ -35,7 +35,6 @@ function App() {
   };
 
   const login = (user) => {
-    console.log("Loginfunc user===>", user);
     setUser(user);
     Cookies.set("token", user.token, { expires: 30 });
   };
@@ -49,11 +48,14 @@ function App() {
     if (token) {
       const fetchData = async () => {
         try {
-          const response = await axios.get("http:localhost:3000/user/details", {
-            headers: {
-              Authorization: "Bearer " + token,
-            },
-          });
+          const response = await axios.get(
+            "http://localhost:3000/user/details",
+            {
+              headers: {
+                Authorization: "Bearer " + token,
+              },
+            }
+          );
           setUser(response.data);
         } catch (error) {
           console.log(error);
