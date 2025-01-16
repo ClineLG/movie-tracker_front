@@ -19,14 +19,10 @@ const Allmovies = ({ page, pageFunc }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/movies/${
+          `https://site--moviestracker--dm4qbjsg7dww.code.run/movies/${
             isNaN(cat) ? cat : `categories/${cat}`
           }/?page=${page}&${from && from !== 0 ? "search=" + from : ""}`
         );
-        //   `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/movies/${
-        //     isNaN(cat) ? cat : `categories/${cat}`
-        //   }/?page=${page}&${from && from !== 0 ? "search=" + from : ""}`
-        // );
 
         setData(response.data);
         setIsLoading(false);

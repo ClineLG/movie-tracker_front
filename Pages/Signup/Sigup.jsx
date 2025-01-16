@@ -64,7 +64,7 @@ const Signup = ({ setModalConnectionVisible, modalConnectionVisible }) => {
       setIsLoading(true);
       try {
         const response = await axios.post(
-          "http://localhost:3000/user/signup",
+          "https://site--moviestracker--dm4qbjsg7dww.code.run/user/signup",
           formData,
           {
             "Content-Type": "multipart/form-data",

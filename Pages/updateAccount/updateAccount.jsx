@@ -68,7 +68,7 @@ const UpdateAccount = ({ user, login, logout }) => {
 
       try {
         const response = await axios.put(
-          "http://localhost:3000/user/update",
+          "https://site--moviestracker--dm4qbjsg7dww.code.run/user/update",
           formData,
           {
             headers: {
@@ -93,11 +93,14 @@ const UpdateAccount = ({ user, login, logout }) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.delete("http://localhost:3000/user/delete", {
-        headers: {
-          Authorization: "Bearer " + user.token,
-        },
-      });
+      const response = await axios.delete(
+        "https://site--moviestracker--dm4qbjsg7dww.code.run/user/delete",
+        {
+          headers: {
+            Authorization: "Bearer " + user.token,
+          },
+        }
+      );
       setEdit(false);
       logout();
       navigate("/");

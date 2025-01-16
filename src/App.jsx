@@ -49,7 +49,7 @@ function App() {
       const fetchData = async () => {
         try {
           const response = await axios.get(
-            "http://localhost:3000/user/details",
+            "https://site--moviestracker--dm4qbjsg7dww.code.run/user/details",
             {
               headers: {
                 Authorization: "Bearer " + token,

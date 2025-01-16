@@ -21,7 +21,7 @@ const ModalAddMovie = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/user/favAsset",
+          "https://site--moviestracker--dm4qbjsg7dww.code.run/user/favAsset",
           {
             headers: {
               Authorization: "Bearer " + user.token,
@@ -49,7 +49,7 @@ const ModalAddMovie = ({
       }
       setIsLoading(true);
       const response = await axios.put(
-        `http://localhost:3000/user/addMovie`,
+        `https://site--moviestracker--dm4qbjsg7dww.code.run/user/addMovie`,
         { movie: dataMovie, comment: comment, asset: assettoSend },
         {
           headers: {

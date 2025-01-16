@@ -15,11 +15,14 @@ const Collections = ({ modalAddVisible, setModalAddVisible, user, add }) => {
     }
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/user/fav", {
-          headers: {
-            Authorization: "Bearer " + user.token,
-          },
-        });
+        const response = await axios.get(
+          "https://site--moviestracker--dm4qbjsg7dww.code.run/user/fav",
+          {
+            headers: {
+              Authorization: "Bearer " + user.token,
+            },
+          }
+        );
         if (!response.data.count || response.data.count < 1) {
           setMassage(
             "Vous n'avez pas de Films dans vos collections pour le moment"

@@ -13,7 +13,9 @@ const MovieDetails = ({ setModalAddVisible, setModalConnectionVisible }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/movies/${id}`);
+        const response = await axios.get(
+          `https://site--moviestracker--dm4qbjsg7dww.code.run/movies/${id}`
+        );
 
         setData(response.data);
         setIsLoading(false);

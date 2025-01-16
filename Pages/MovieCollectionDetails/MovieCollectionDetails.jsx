@@ -77,7 +77,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
   const handleDelete = async (index) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/user/collection/details/${index}`,
+        `hhttps://site--moviestracker--dm4qbjsg7dww.code.run/user/collection/details/${index}`,
         {
           headers: {
             Authorization: "Bearer " + user.token,
