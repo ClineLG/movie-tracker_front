@@ -9,8 +9,6 @@ const ModalAddMovie = ({
   add,
   setAdd,
 }) => {
-  console.log("dataMovie", dataMovie);
-
   const [asset, setAsset] = useState("");
   const [comment, setComment] = useState("");
   const [AddIsLoading, setAddIsLoading] = useState(false);
@@ -23,7 +21,7 @@ const ModalAddMovie = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/favAsset",
+          "http://localhost:3000/user/favAsset",
           {
             headers: {
               Authorization: "Bearer " + user.token,
@@ -51,7 +49,7 @@ const ModalAddMovie = ({
       }
       setIsLoading(true);
       const response = await axios.put(
-        `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/addMovie`,
+        `http://localhost:3000/user/addMovie`,
         { movie: dataMovie, comment: comment, asset: assettoSend },
         {
           headers: {
@@ -59,7 +57,6 @@ const ModalAddMovie = ({
           },
         }
       );
-      console.log(response.data);
       setIsLoading(false);
       setDone(true);
     } catch (error) {
@@ -103,7 +100,6 @@ const ModalAddMovie = ({
                     setAddCol(true);
                     setAsset("");
                   } else {
-                    console.log("coucou", asset, event.target.value);
                     setAsset(event.target.value);
                   }
                 }}

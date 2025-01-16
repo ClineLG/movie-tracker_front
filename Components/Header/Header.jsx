@@ -7,7 +7,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Header = ({ pageFunc }) => {
   const { user, logout } = useContext(userContext);
-  console.log("user", user);
   const navigate = useNavigate();
   const [query, setQuery] = useState({
     cat: 0,
@@ -17,7 +16,6 @@ const Header = ({ pageFunc }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // console.log(query.cat);
     if (!query.cat && !query.search) {
       null;
     } else if (!query.cat) {

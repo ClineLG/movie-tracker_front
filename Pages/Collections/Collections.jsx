@@ -15,20 +15,16 @@ const Collections = ({ modalAddVisible, setModalAddVisible, user, add }) => {
     }
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/fav",
-          {
-            headers: {
-              Authorization: "Bearer " + user.token,
-            },
-          }
-        );
+        const response = await axios.get("http://localhost:3000/user/fav", {
+          headers: {
+            Authorization: "Bearer " + user.token,
+          },
+        });
         if (!response.data.count || response.data.count < 1) {
           setMassage(
             "Vous n'avez pas de Films dans vos collections pour le moment"
           );
         }
-        // console.log("RESPONSE>>>>>>>>>", response.data);
         setCollections(response.data);
         setIsLoading(false);
       } catch (error) {

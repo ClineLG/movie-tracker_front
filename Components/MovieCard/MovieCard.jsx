@@ -10,12 +10,11 @@ const MovieCard = ({ content }) => {
     const fetchdata = async () => {
       try {
         const response = await axios.get(
-          `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/movies/${content}/?page=${
+          `http://localhost:3000/movies/${content}/?page=${
             content === "playing" ? 2 : 1
           }`
         );
         setData(response.data.results);
-        console.log(response.data);
         setIsLoading(false);
       } catch (error) {
         console.log(error);

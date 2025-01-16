@@ -22,7 +22,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
     setEditLoading(true);
     try {
       const response = await axios.put(
-        `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/collection/details/${index}`,
+        `http://localhost:3000/user/collection/details/${index}`,
         { asset: userEdit.asset, comment: userEdit.comment },
         {
           headers: {
@@ -30,7 +30,6 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
           },
         }
       );
-      console.log("SubmitResponse", response.data);
       setEdit(false);
       setEditLoading(false);
     } catch (error) {
@@ -43,7 +42,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/collection/details/${id}`,
+          `http://localhost:3000/user/collection/details/${id}`,
           {
             headers: {
               Authorization: "Bearer " + user.token,
@@ -51,7 +50,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
           }
         );
         const response2 = await axios.get(
-          "https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/favAsset",
+          "http://localhost:3000/user/favAsset",
           {
             headers: {
               Authorization: "Bearer " + user.token,
@@ -60,7 +59,6 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
         );
         setAsset(response2.data);
         setAdd(!add);
-        console.log("Response1", response.data);
         setData(response.data);
         const obj = {
           asset: response.data.result.asset,
@@ -79,7 +77,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
   const handleDelete = async (index) => {
     try {
       const response = await axios.delete(
-        `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/collection/details/${index}`,
+        `http://localhost:3000/user/collection/details/${index}`,
         {
           headers: {
             Authorization: "Bearer " + user.token,

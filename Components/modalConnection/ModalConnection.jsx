@@ -1,7 +1,6 @@
 import "./modal-connection.css";
 import { Link } from "react-router-dom";
 const ModalConnection = ({ setModalConnectionVisible, dataMovie }) => {
-  console.log("DB", dataMovie);
   return (
     <section className="modal">
       <div className="modalContent">

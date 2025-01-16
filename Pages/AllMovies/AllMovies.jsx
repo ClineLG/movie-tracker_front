@@ -14,16 +14,19 @@ const Allmovies = ({ page, pageFunc }) => {
   const location = useLocation();
 
   const { from } = location.state || 0;
-  // console.log("LOC", from);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/movies/${
+          `http://localhost:3000/movies/${
             isNaN(cat) ? cat : `categories/${cat}`
           }/?page=${page}&${from && from !== 0 ? "search=" + from : ""}`
         );
+        //   `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/movies/${
+        //     isNaN(cat) ? cat : `categories/${cat}`
+        //   }/?page=${page}&${from && from !== 0 ? "search=" + from : ""}`
+        // );
 
         setData(response.data);
         setIsLoading(false);
@@ -59,7 +62,6 @@ const Allmovies = ({ page, pageFunc }) => {
   ) : (
     <section className="allmovies">
       <div className="container">
-        {console.log("cat", whatIsTheCategory(cat * 1))}
         <h1>
           {!isNaN(cat)
             ? whatIsTheCategory(cat * 1)

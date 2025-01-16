@@ -13,11 +13,8 @@ const MovieDetails = ({ setModalAddVisible, setModalConnectionVisible }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/movies/${id}`
-        );
+        const response = await axios.get(`http://localhost:3000/movies/${id}`);
 
-        console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {

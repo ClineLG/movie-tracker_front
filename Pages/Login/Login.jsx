@@ -43,15 +43,11 @@ const Login = ({ setModalConnectionVisible, modalConnectionVisible }) => {
     } else {
       setIsLoading(true);
       try {
-        const response = await axios.post(
-          "https://site--backend-movie-tracker--29w4cq6k8fjr.code.run/user/login",
-          {
-            email: email,
-            password: password,
-          }
-        );
+        const response = await axios.post("http://localhost:3000/user/login", {
+          email: email,
+          password: password,
+        });
         setIsLoading(false);
-        console.log(response.data);
 
         login(response.data);
         navigate(from);
