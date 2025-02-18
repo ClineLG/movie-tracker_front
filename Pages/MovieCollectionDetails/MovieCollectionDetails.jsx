@@ -42,7 +42,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `hhttps://site--moviestracker--dm4qbjsg7dww.code.run/user/collection/details/${id}`,
+          `https://site--moviestracker--dm4qbjsg7dww.code.run/user/collection/details/${id}`,
           {
             headers: {
               Authorization: "Bearer " + user.token,
