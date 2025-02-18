@@ -22,7 +22,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
     setEditLoading(true);
     try {
       const response = await axios.put(
-        `http://localhost:3000/user/collection/details/${index}`,
+        `hhttps://site--moviestracker--dm4qbjsg7dww.code.run/user/collection/details/${index}`,
         { asset: userEdit.asset, comment: userEdit.comment },
         {
           headers: {
@@ -42,7 +42,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/user/collection/details/${id}`,
+          `hhttps://site--moviestracker--dm4qbjsg7dww.code.run/user/collection/details/${id}`,
           {
             headers: {
               Authorization: "Bearer " + user.token,
@@ -50,7 +50,7 @@ const MovieCollectionDetails = ({ user, add, setAdd, pageFunc }) => {
           }
         );
         const response2 = await axios.get(
-          "http://localhost:3000/user/favAsset",
+          "hhttps://site--moviestracker--dm4qbjsg7dww.code.run/user/favAsset",
           {
             headers: {
               Authorization: "Bearer " + user.token,
